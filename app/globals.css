@@ -3393,3 +3393,673 @@ main {
     font-size: 10px;
   }
 }
+
+/* Phone conversation */
+
+.phone-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px 16px 38px;
+  min-height: calc(100vh - 120px);
+}
+
+.phone-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+  height: min(790px, calc(100dvh - 178px));
+  min-height: 560px;
+  overflow: hidden;
+  border: 1px solid #3a3a3c;
+  border-radius: 52px;
+  background: #000;
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.72),
+    0 0 0 6px #090909,
+    0 0 0 7px #2c2c2e;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+}
+
+.phone-island {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  z-index: 30;
+  width: 104px;
+  height: 26px;
+  border-radius: 20px;
+  background: #000;
+  transform: translateX(-50%);
+}
+
+.phone-status {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  height: 44px;
+  padding: 0 25px 7px;
+  color: #f2f2f7;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.phone-status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.signal-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5px;
+  height: 10px;
+}
+
+.signal-bars i {
+  display: block;
+  width: 2.5px;
+  border-radius: 1px;
+  background: #f2f2f7;
+}
+
+.signal-bars i:nth-child(1) {
+  height: 4px;
+}
+
+.signal-bars i:nth-child(2) {
+  height: 6px;
+}
+
+.signal-bars i:nth-child(3) {
+  height: 8px;
+}
+
+.signal-bars i:nth-child(4) {
+  height: 10px;
+}
+
+.wifi-mark {
+  display: inline-block;
+  color: #f2f2f7;
+  font-size: 13px;
+  line-height: 1;
+  transform: rotate(180deg);
+}
+
+.battery-mark {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 9px;
+  border: 1px solid #f2f2f7;
+  border-radius: 2px;
+  padding: 1px;
+}
+
+.battery-mark i {
+  display: block;
+  width: 74%;
+  height: 100%;
+  border-radius: 1px;
+  background: #f2f2f7;
+}
+
+.battery-mark::after {
+  position: absolute;
+  top: 2px;
+  right: -3px;
+  width: 2px;
+  height: 4px;
+  border-radius: 0 1px 1px 0;
+  background: #f2f2f7;
+  content: "";
+}
+
+.phone-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 10px;
+  min-height: 56px;
+  padding: 2px 16px 10px;
+  border-bottom: 1px solid #1c1c1e;
+  background: rgba(11, 11, 13, 0.96);
+}
+
+.phone-header .portrait {
+  width: 34px;
+  height: 34px;
+}
+
+.phone-contact {
+  flex: 1;
+  min-width: 0;
+}
+
+.phone-title {
+  margin: 0;
+  color: #f2f2f7;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.phone-subtitle {
+  margin: 3px 0 0;
+  color: #8e8e93;
+  font-size: 10.5px;
+  line-height: 1.2;
+}
+
+.phone-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 27px;
+  height: 27px;
+  border: 1px solid #3a3a3c;
+  border-radius: 50%;
+  background: #1c1c1e;
+  color: #0a84ff;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.phone-chat {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 12px 12px;
+  background: #000;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.phone-chat::before {
+  flex: 0 0 auto;
+  margin-top: auto;
+  content: "";
+}
+
+.phone-chat::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-day {
+  margin: 7px 0 10px;
+  color: #8e8e93;
+  font-size: 10.5px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.msg-row {
+  display: flex;
+  margin: 3px 0;
+  animation: phone-msg-in 0.2s ease both;
+}
+
+.msg-row.is-user {
+  justify-content: flex-end;
+}
+
+.msg-row.is-simone {
+  justify-content: flex-start;
+}
+
+.msg-bubble {
+  max-width: 82%;
+  padding: 8px 12px;
+  border-radius: 18px;
+  background: #26252a;
+  color: #f2f2f7;
+  font-size: 15px;
+  line-height: 1.38;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.is-user .msg-bubble {
+  border-bottom-right-radius: 5px;
+  background: #0a84ff;
+  color: #fff;
+}
+
+.is-simone .msg-bubble {
+  border-bottom-left-radius: 5px;
+}
+
+.quote-bubble {
+  max-width: 88%;
+  padding: 10px 12px 11px;
+  background: #1c1c1e;
+}
+
+.quote-preface {
+  margin: 0 0 5px;
+  color: #8e8e93;
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+.contact-name {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #0a84ff;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.contact-name:hover {
+  text-decoration: underline;
+}
+
+.quote-text {
+  margin: 0;
+  color: #f2f2f7;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.green-bubble {
+  border: 1px solid #1f5a34;
+  background: #12351f;
+  color: #b6f7c2;
+}
+
+.typing-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 14px;
+}
+
+.typing-bubble span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8e8e93;
+  animation: phone-typing 1.2s infinite ease-in-out;
+}
+
+.typing-bubble span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing-bubble span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.suggestions-row {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  overflow-x: auto;
+  padding: 5px 12px;
+  border-top: 1px solid #1c1c1e;
+  border-bottom: 1px solid #1c1c1e;
+  background: #0b0b0d;
+  scrollbar-width: none;
+}
+
+.suggestions-row::-webkit-scrollbar {
+  display: none;
+}
+
+.suggestion-chip {
+  flex: 0 0 auto;
+  border: 1px solid #3a3a3c;
+  border-radius: 999px;
+  background: #1c1c1e;
+  padding: 6px 10px;
+  color: #f2f2f7;
+  font-family: inherit;
+  font-size: 12.5px;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.suggestion-chip:hover {
+  border-color: #0a84ff;
+  color: #0a84ff;
+}
+
+.phone-input-bar {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 8px;
+  padding: 6px 10px;
+  border-top: 1px solid #1c1c1e;
+  background: #0b0b0d;
+}
+
+.phone-input {
+  flex: 1;
+  min-width: 0;
+  height: 34px;
+  border: 1px solid #3a3a3c;
+  border-radius: 17px;
+  outline: none;
+  background: #1c1c1e;
+  padding: 0 12px;
+  color: #f2f2f7;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.phone-send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: #0a84ff;
+  color: #fff;
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.phone-send:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.phone-keyboard {
+  flex: 0 0 auto;
+  padding: 5px 3px 8px;
+  border-top: 1px solid #2c2c2e;
+  background: #1c1c1e;
+  pointer-events: none;
+  user-select: none;
+}
+
+.key-row {
+  display: flex;
+  gap: 5px;
+  margin: 4px 0;
+  padding: 0 3px;
+}
+
+.key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 37px;
+  border-radius: 5px;
+  background: #3a3a3c;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.key-special {
+  flex: 1.35;
+  background: #2c2c2e;
+  font-size: 11px;
+}
+
+.key-space {
+  flex: 4.5;
+}
+
+.phone-readonly-bar {
+  flex: 0 0 auto;
+  border-top: 1px solid #1c1c1e;
+  background: #0b0b0d;
+  padding: 12px;
+  color: #8e8e93;
+  font-size: 10.5px;
+  text-align: center;
+}
+
+.phone-notes-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.56);
+}
+
+.phone-notes-sheet {
+  width: 92%;
+  height: 100%;
+  overflow-y: auto;
+  border-left: 1px solid #3a3a3c;
+  background: #0b0b0d;
+  padding: 16px;
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.45);
+  animation: phone-sheet-in 0.22s ease both;
+  scrollbar-width: none;
+}
+
+.phone-notes-sheet::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-notes-sheet .reading-notes {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.phone-notes-sheet .reading-notes-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: -16px -16px 12px;
+  padding: 16px 16px 10px;
+  border-bottom: 1px solid #2c2c2e;
+  background: #0b0b0d;
+}
+
+.phone-notes-sheet .reading-notes-quote {
+  font-size: 21px;
+}
+
+.phone-notes-sheet .reading-notes-section h3 {
+  font-size: 20px;
+}
+
+.phone-share-link {
+  display: inline-flex;
+  margin-top: 20px;
+  border: 1px solid #3a3a3c;
+  border-radius: 999px;
+  background: transparent;
+  padding: 8px 12px;
+  color: #0a84ff;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.phone-info-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.phone-info-sheet {
+  position: relative;
+  width: 100%;
+  border: 1px solid #3a3a3c;
+  border-radius: 20px;
+  background: #1c1c1e;
+  padding: 20px;
+  color: #f2f2f7;
+  animation: phone-msg-in 0.2s ease both;
+}
+
+.phone-info-sheet h2 {
+  margin: 4px 0 10px;
+  font-family: var(--serif);
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+.phone-info-sheet p {
+  margin: 0 0 14px;
+  color: #c7c7cc;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.phone-info-sheet .eyebrow {
+  color: #0a84ff;
+}
+
+.phone-info-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #8e8e93;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.phone-info-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  border-top: 1px solid #3a3a3c;
+  padding-top: 14px;
+}
+
+.phone-info-links a {
+  color: #0a84ff;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.phone-share-cta {
+  margin: 16px 0 0;
+}
+
+.phone-share-page {
+  min-height: 0;
+}
+
+@keyframes phone-msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes phone-typing {
+  0%,
+  60%,
+  100% {
+    opacity: 0.38;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes phone-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateX(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .phone-page {
+    padding: 0 0 20px;
+    min-height: 0;
+  }
+
+  .phone-frame {
+    width: 100%;
+    height: calc(100dvh - 142px);
+    min-height: 540px;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .phone-island {
+    display: none;
+  }
+
+  .phone-status {
+    height: 38px;
+    padding-top: 8px;
+  }
+
+  .phone-keyboard {
+    display: none;
+  }
+
+  .phone-notes-sheet {
+    width: 100%;
+    border-left: 0;
+  }
+
+  .phone-header {
+    padding-top: 0;
+  }
+
+  .phone-share-cta {
+    padding-bottom: 8px;
+  }
+}

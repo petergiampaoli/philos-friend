@@ -1,8 +1,7 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
-import { QuoteCycle } from "@/components/quote-cycle";
+import { PhoneChat } from "@/components/phone-chat";
 import { getAnswer } from "@/lib/answers";
 
 export const dynamic = "force-dynamic";
@@ -38,18 +37,8 @@ export default async function SharedAnswerPage({
   const shareUrl = host ? `${protocol}://${host}/a/${response.id}` : `/a/${response.id}`;
 
   return (
-    <div className="share-page">
-      <div className="share-toolbar">
-        <div>
-          <p className="eyebrow">Shared answer</p>
-          <p className="share-question">“{response.question}”</p>
-        </div>
-        <Link className="text-action" href="/">
-          Ask your own
-        </Link>
-      </div>
-
-      <QuoteCycle response={response} shareUrl={shareUrl} askAgainHref="/" />
+    <div className="phone-share-page">
+      <PhoneChat initialResponse={response} shareUrl={shareUrl} readOnly />
     </div>
   );
 }

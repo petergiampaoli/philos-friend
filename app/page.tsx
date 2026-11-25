@@ -1,4 +1,4 @@
-import { AskClient } from "@/components/ask-client";
+import { PhoneChat } from "@/components/phone-chat";
 
 export default async function HomePage({
   searchParams,
@@ -8,5 +8,5 @@ export default async function HomePage({
   const params = await searchParams;
   const prompt = typeof params.prompt === "string" ? params.prompt : "";
 
-  return <AskClient initialPrompt={prompt} />;
+  return <PhoneChat initialPrompt={prompt} />;
 }
