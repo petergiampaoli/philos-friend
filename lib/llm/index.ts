@@ -45,6 +45,7 @@ export async function synthesizeWithLlm(args: {
 
   let draft: Answer;
   try {
+    const writerStarted = Date.now();
     const writer = await generateAnswer({
       prompt: args.prompt,
       history,
@@ -55,7 +56,7 @@ export async function synthesizeWithLlm(args: {
     });
     draft = writer.answer;
     usage = addUsage(usage, writer.usage);
-    notes.push(...writer.notes);
+    notes.push(`writer ${Date.now() - writerStarted}ms`, ...writer.notes);
   } catch (error) {
     console.warn(
       `[philos-friend] live writer failed: ${
@@ -67,6 +68,7 @@ export async function synthesizeWithLlm(args: {
 
   let answer = draft;
   try {
+    const criticStarted = Date.now();
     const reviewed = await critiqueAnswer({
       prompt: args.prompt,
       history,
@@ -79,10 +81,11 @@ export async function synthesizeWithLlm(args: {
 
     if (reviewed) {
       usage = addUsage(usage, reviewed.usage);
-      notes.push(critiqueSummary(reviewed.critique));
+      notes.push(`critic ${Date.now() - criticStarted}ms`, critiqueSummary(reviewed.critique));
 
       if (reviewed.critique.shouldRevise) {
         try {
+          const revisionStarted = Date.now();
           const revised = await reviseAnswer({
             prompt: args.prompt,
             history,
@@ -95,7 +98,7 @@ export async function synthesizeWithLlm(args: {
           });
           answer = revised.answer;
           usage = addUsage(usage, revised.usage);
-          notes.push(...revised.notes);
+          notes.push(`revision ${Date.now() - revisionStarted}ms`, ...revised.notes);
         } catch (revisionError) {
           console.warn(
             `[philos-friend] editor revision failed: ${
@@ -116,6 +119,7 @@ export async function synthesizeWithLlm(args: {
   }
 
   try {
+    const affirmationStarted = Date.now();
     const green = await generateAffirmations({
       prompt: args.prompt,
       history,
@@ -132,7 +136,7 @@ export async function synthesizeWithLlm(args: {
       })),
     };
     usage = addUsage(usage, green.usage);
-    notes.push(...green.notes);
+    notes.push(`affirmation ${Date.now() - affirmationStarted}ms`, ...green.notes);
   } catch (affirmationError) {
     console.warn(
       `[philos-friend] affirmation pass failed: ${

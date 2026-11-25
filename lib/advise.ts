@@ -121,9 +121,11 @@ export async function advise(prompt: string, options: AdviseOptions = {}): Promi
 
   const notes: string[] = [];
   let usage: ProviderUsage | undefined;
+  const analysisStarted = Date.now();
   const analyzed = config ? await analyzePrompt({ prompt: question, history }) : null;
   const analysis = analyzed?.analysis ?? null;
   usage = analyzed?.usage;
+  if (analysis && config) notes.push(`analysis ${Date.now() - analysisStarted}ms`);
   if (!analysis && config) notes.push("analysis unavailable");
 
   const retrieval = retrieve(context, {

@@ -1,6 +1,6 @@
-export type ProviderName = "openai" | "anthropic" | "ollama" | "deepseek";
+export type ProviderName = "openai" | "anthropic" | "ollama" | "deepseek" | "opencode";
 
-export type ProviderStage = "analysis" | "writer" | "critic" | "affirmation";
+export type ProviderStage = "analysis" | "writer" | "critic" | "revision" | "affirmation";
 
 export type ProviderConfig = {
   provider: ProviderName;
@@ -35,6 +35,7 @@ const STAGE_MODEL_ENV: Record<ProviderStage, string> = {
   analysis: "LLM_ANALYSIS_MODEL",
   writer: "LLM_MODEL",
   critic: "LLM_CRITIC_MODEL",
+  revision: "LLM_REVISION_MODEL",
   affirmation: "LLM_AFFIRMATION_MODEL",
 };
 
@@ -42,6 +43,7 @@ const STAGE_EFFORT_ENV: Record<ProviderStage, string> = {
   analysis: "LLM_ANALYSIS_EFFORT",
   writer: "LLM_WRITER_EFFORT",
   critic: "LLM_CRITIC_EFFORT",
+  revision: "LLM_REVISION_EFFORT",
   affirmation: "LLM_AFFIRMATION_EFFORT",
 };
 
@@ -53,14 +55,16 @@ function validEffort(value: string | undefined): "none" | "low" | "high" | "max"
 export function getProviderConfig(stage: ProviderStage = "writer"): ProviderConfig | null {
   const raw = (process.env.LLM_PROVIDER ?? "").trim().toLowerCase();
   if (!raw || raw === "demo") return null;
-  if (raw !== "openai" && raw !== "anthropic" && raw !== "ollama" && raw !== "deepseek") {
+  if (raw !== "openai" && raw !== "anthropic" && raw !== "ollama" && raw !== "deepseek" && raw !== "opencode") {
     return null;
   }
 
   const apiKey =
     raw === "deepseek"
       ? process.env.DEEPSEEK_API_KEY?.trim() || process.env.LLM_API_KEY?.trim()
-      : process.env.LLM_API_KEY?.trim();
+      : raw === "opencode"
+        ? process.env.OPENCODE_API_KEY?.trim() || process.env.LLM_API_KEY?.trim()
+        : process.env.LLM_API_KEY?.trim();
 
   if (raw !== "ollama" && !apiKey) return null;
 
@@ -70,7 +74,7 @@ export function getProviderConfig(stage: ProviderStage = "writer"): ProviderConf
       ? "claude-sonnet-4-5"
       : raw === "openai"
         ? "gpt-4.1-mini"
-        : raw === "deepseek"
+        : raw === "deepseek" || raw === "opencode"
           ? "deepseek-v4-pro"
           : "llama3.3";
   const model = stageModel || process.env.LLM_MODEL?.trim() || fallbackModel;
@@ -83,12 +87,14 @@ export function getProviderConfig(stage: ProviderStage = "writer"): ProviderConf
         ? "https://api.openai.com/v1"
         : raw === "deepseek"
           ? "https://api.deepseek.com"
-          : "http://127.0.0.1:11434");
+          : raw === "opencode"
+            ? "https://opencode.ai/inference/go/openai/v1"
+            : "http://127.0.0.1:11434");
 
   const defaultEffort = stage === "writer" || stage === "critic" ? "max" : "high";
   const reasoningEffort =
     validEffort(process.env[STAGE_EFFORT_ENV[stage]]?.trim()) ??
-    (raw === "deepseek" ? defaultEffort : undefined);
+    (raw === "deepseek" || raw === "opencode" ? defaultEffort : undefined);
 
   return { provider: raw, model, apiKey, baseUrl, stage, reasoningEffort };
 }
@@ -233,6 +239,54 @@ export async function callProvider(
     }
 
     throw new Error("DeepSeek returned an empty JSON response.");
+  }
+
+  if (config.provider === "opencode") {
+    const response = await fetch(`${config.baseUrl}/chat/completions`, {
+      method: "POST",
+      signal,
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${config.apiKey ?? ""}`,
+        "user-agent": "philos-friend/1.0",
+        "x-opencode-session": process.env.LLM_SESSION_ID?.trim() || "philos-friend",
+      },
+      body: JSON.stringify({
+        model: config.model,
+        max_tokens: maxTokens,
+        temperature,
+        stream: false,
+        messages: [
+          { role: "system", content: system },
+          { role: "user", content: user },
+        ],
+        response_format: {
+          type: "json_schema",
+          json_schema: {
+            name: "philos_friend_response",
+            strict: true,
+            schema,
+          },
+        },
+        ...(config.reasoningEffort
+          ? { reasoning_effort: config.reasoningEffort }
+          : {}),
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `OpenCode Go ${response.status}: ${(await response.text()).slice(0, 300)}`,
+      );
+    }
+
+    const data = await response.json();
+    return {
+      provider: config.provider,
+      model: config.model,
+      raw: textFromOpenAi(data),
+      usage: usageFromOpenAi(data),
+    };
   }
 
   if (config.provider === "anthropic") {

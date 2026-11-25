@@ -105,16 +105,32 @@ This is a guardrail, not a proof. The corpus is human-curated and still benefits
 Copy `.env.example` to `.env.local` and set one provider:
 
 ```bash
-# DeepSeek — maximum quality
+# OpenCode Go — DeepSeek V4 Pro, maximum quality
+LLM_PROVIDER=opencode
+OPENCODE_API_KEY=...
+LLM_BASE_URL=https://opencode.ai/inference/go/openai/v1
+LLM_MODEL=deepseek-v4-pro
+LLM_ANALYSIS_MODEL=deepseek-v4.1-flash
+LLM_CRITIC_MODEL=deepseek-v4.1-flash
+LLM_AFFIRMATION_MODEL=deepseek-v4.1-flash
+LLM_WRITER_EFFORT=high
+LLM_CRITIC_EFFORT=high
+LLM_REVISION_MODEL=deepseek-v4.1-flash
+LLM_REVISION_EFFORT=high
+LLM_SESSION_ID=philos-friend
+
+# Direct DeepSeek — maximum quality
 LLM_PROVIDER=deepseek
 DEEPSEEK_API_KEY=...
 LLM_BASE_URL=https://api.deepseek.com
 LLM_MODEL=deepseek-v4-pro
-LLM_ANALYSIS_MODEL=deepseek-v4-pro
-LLM_CRITIC_MODEL=deepseek-v4-pro
-LLM_AFFIRMATION_MODEL=deepseek-v4-pro
-LLM_WRITER_EFFORT=max
-LLM_CRITIC_EFFORT=max
+LLM_ANALYSIS_MODEL=deepseek-v4.1-flash
+LLM_CRITIC_MODEL=deepseek-v4.1-flash
+LLM_AFFIRMATION_MODEL=deepseek-v4.1-flash
+LLM_WRITER_EFFORT=high
+LLM_CRITIC_EFFORT=high
+LLM_REVISION_MODEL=deepseek-v4.1-flash
+LLM_REVISION_EFFORT=high
 
 # Anthropic
 LLM_PROVIDER=anthropic
@@ -133,7 +149,9 @@ LLM_MODEL=llama3.3
 LLM_BASE_URL=http://127.0.0.1:11434
 ```
 
-The DeepSeek path uses `deepseek-v4-pro` with thinking enabled and `reasoning_effort: max` for the writer and critic. Analysis and the green-line pass run at high reasoning by default. DeepSeek's legacy `deepseek-chat` and `deepseek-reasoner` names were retired in July 2026.
+The recommended path is **OpenCode Go** pointed at `deepseek-v4-pro`. It uses the OpenAI-compatible endpoint at `https://opencode.ai/inference/go/openai/v1`, sends the required `x-opencode-session` header, runs the writer at `reasoning_effort: high`, and uses V4.1 Flash for analysis, critique, revision, and the green-line pass so the request stays responsive.
+
+The direct DeepSeek path behaves the same way. DeepSeek's legacy `deepseek-chat` and `deepseek-reasoner` names were retired in July 2026.
 
 The API key is server-only. The client never sees it. If the provider is missing, slow, or returns invalid JSON, the app falls back gracefully rather than breaking.
 
@@ -243,7 +261,7 @@ tests/                     Corpus, engine, golden set, conversation, cost, rate-
 - The Indigenous Philosophies node names specific thinkers rather than claiming to speak for “Indigenous thought” as a whole.
 - 123 quotations is a start, not a complete quote bank. Ninety-two profiles still have no verified quotation, so the quote-first packet prefers the 95 thinkers that do.
 - The deterministic composer is deliberately plainer than live synthesis. It exists so the app never depends on a key.
-- The max-quality DeepSeek path makes several calls — analysis, writer, critic/revise, and a dedicated green-line pass — and can take roughly 20–45 seconds. A missing key falls back to demo mode.
+- The max-quality DeepSeek path makes several calls — analysis, writer, critic/revise, and a dedicated green-line pass — and can take roughly one to three minutes on OpenCode Go. A missing key falls back to demo mode.
 - In demo mode, the quote picked from a thinker can be less targeted than a live model’s selection; the full theory is still in the library profile.
 - Answers are stored in `~/.philos-friend` by default. For a public multi-instance deployment, swap in Postgres or Redis before scaling.
 - Rate limiting is in-memory and per process. A multi-instance deployment needs a shared Redis limiter.

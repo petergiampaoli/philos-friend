@@ -283,8 +283,8 @@ export async function reviseAnswer(args: {
   previous: Answer;
   critique: { scores: Record<string, number>; issues: string[] };
 }): Promise<{ answer: Answer; usage?: ProviderUsage; notes: string[] }> {
-  const config = getProviderConfig("writer");
-  if (!config) throw new Error("No writer model is configured.");
+  const config = getProviderConfig("revision");
+  if (!config) throw new Error("No revision model is configured.");
 
   const base = buildUserMessage(args);
   const critiqueText = `The editor reviewed your previous answer and found these problems:
