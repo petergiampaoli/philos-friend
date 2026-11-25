@@ -1,7 +1,41 @@
-import { promptAnalysisSchema, THEME_IDS, type PromptAnalysis } from "./schema";
+import { z } from "zod";
+import {
+  promptAnalysisSchema,
+  THEME_IDS,
+  themeIdSchema,
+  type PromptAnalysis,
+} from "./schema";
 import { extractThemeHits } from "./retrieve";
 import { callStructured } from "./llm/structured";
 import { getProviderConfig } from "./llm/providers";
+
+function clampTone(value: unknown): unknown {
+  if (typeof value !== "string") return value;
+  const text = value.trim();
+  if (text.length <= 160) return text;
+  const cut = text.slice(0, 160);
+  const boundary = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf(", "), cut.lastIndexOf(" "));
+  return (boundary > 96 ? cut.slice(0, boundary) : cut).trim();
+}
+
+function clampThemes(value: unknown): unknown {
+  if (!Array.isArray(value)) return value;
+  const seen = new Set<string>();
+  const themes: string[] = [];
+  for (const item of value) {
+    if (typeof item !== "string" || seen.has(item)) continue;
+    if (!THEME_IDS.includes(item as (typeof THEME_IDS)[number])) continue;
+    seen.add(item);
+    themes.push(item);
+    if (themes.length === 8) break;
+  }
+  return themes;
+}
+
+const analysisResponseSchema = promptAnalysisSchema.extend({
+  themes: z.preprocess(clampThemes, z.array(themeIdSchema).max(8)),
+  tone: z.preprocess(clampTone, z.string().min(3).max(160)),
+});
 
 export const ANALYSIS_JSON_SCHEMA: Record<string, unknown> = {
   type: "object",
@@ -49,7 +83,9 @@ Be specific, concrete, and non-judgmental. Distinguish:
 - the truth the person may be circling but not saying,
 - the kind of response that would actually help: challenge, consolation, clarification, permission, or practice.
 
-The tone field should describe how a wise friend would speak to this person: direct but kind, gentle but unsentimental, playful, grave, etc.
+The tone field should describe how a wise friend would speak to this person: direct but kind, gentle but unsentimental, playful, grave, etc. Keep it to a short phrase under 20 words.
+
+Choose at most six themes from the library's theme list, and no more than four emotional tones.
 
 If the message suggests acute crisis or self-harm, set safety to "care". Otherwise use "normal". Never diagnose.
 
@@ -93,7 +129,7 @@ Analyse the person's actual situation and return the JSON object.`;
       system: ANALYSIS_SYSTEM_PROMPT,
       user,
       schema: ANALYSIS_JSON_SCHEMA,
-      zodSchema: promptAnalysisSchema,
+      zodSchema: analysisResponseSchema,
       label: "prompt analysis",
       options: { temperature: 0.2, maxTokens: 4000 },
     });
