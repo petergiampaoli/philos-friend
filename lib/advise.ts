@@ -2,6 +2,8 @@ import { randomUUID } from "node:crypto";
 import type { AdviseResponse, Answer, PacketThinker, Trace } from "./schema";
 import { retrieve } from "./retrieve";
 import { buildPacket } from "./packet";
+import { analyzePrompt } from "./analysis";
+import { rankPacketQuotes } from "./quote-search";
 import { composeTemplateAnswer, getFixture } from "./compose";
 import { validateAnswer } from "./validate";
 import { synthesizeWithLlm } from "./llm";
@@ -17,6 +19,18 @@ export type AdviseOptions = {
 
 function familyOf(tradition: string): string {
   return tradition.split("/")[0].trim().toLowerCase();
+}
+
+function mergeUsage(
+  a: ProviderUsage | undefined,
+  b: ProviderUsage | undefined,
+): ProviderUsage | undefined {
+  if (!a && !b) return undefined;
+  return {
+    inputTokens: (a?.inputTokens ?? 0) + (b?.inputTokens ?? 0),
+    outputTokens: (a?.outputTokens ?? 0) + (b?.outputTokens ?? 0),
+    reasoningTokens: (a?.reasoningTokens ?? 0) + (b?.reasoningTokens ?? 0),
+  };
 }
 
 /**
@@ -91,14 +105,12 @@ export async function advise(prompt: string, options: AdviseOptions = {}): Promi
     .filter(Boolean)
     .slice(0, 10);
   const context = [...history, question].filter(Boolean).join("\n");
-  const retrieval = retrieve(context, { excludeThinkerIds: excluded });
-  const packet = buildPacket(retrieval);
-  const config = getProviderConfig();
+  const config = getProviderConfig("writer");
   const providerName = config?.provider ?? "demo";
   const modelName = config?.model ?? "library";
   const key = cacheKey({
     prompt: context,
-    packetIds: packet.map((thinker) => thinker.id),
+    packetIds: [],
     provider: providerName,
     model: modelName,
     exclude: excluded,
@@ -108,11 +120,27 @@ export async function advise(prompt: string, options: AdviseOptions = {}): Promi
   if (cached) return cached;
 
   const notes: string[] = [];
+  let usage: ProviderUsage | undefined;
+  const analyzed = config ? await analyzePrompt({ prompt: question, history }) : null;
+  const analysis = analyzed?.analysis ?? null;
+  usage = analyzed?.usage;
+  if (!analysis && config) notes.push("analysis unavailable");
+
+  const retrieval = retrieve(context, {
+    excludeThinkerIds: excluded,
+    limit: 16,
+    extraThemes: analysis?.themes,
+  });
+  const basePacket = buildPacket(retrieval);
+
+  const ranked = rankPacketQuotes(basePacket, analysis, retrieval.themes);
+  const packet = ranked.packet;
+  const catalog = ranked.catalog;
+
   let answer: AdviseResponse["answer"] | null = null;
   let mode: "demo" | "llm" = "demo";
   let provider = "demo";
   let model = "library";
-  let usage: ProviderUsage | undefined;
 
   if (history.length > 0) notes.push(`amalgam of ${history.length + 1} questions`);
   if (excluded.length > 0) notes.push(`excluded ${excluded.length} prior voices`);
@@ -123,6 +151,8 @@ export async function advise(prompt: string, options: AdviseOptions = {}): Promi
       history,
       packet,
       themes: retrieval.themes,
+      analysis,
+      catalog,
     });
 
     if (live) {
@@ -130,7 +160,7 @@ export async function advise(prompt: string, options: AdviseOptions = {}): Promi
       mode = "llm";
       provider = live.provider;
       model = live.model;
-      usage = live.usage;
+      usage = mergeUsage(usage, live.usage);
       notes.push(...live.notes);
     } else {
       notes.push("live synthesis unavailable");
@@ -150,7 +180,7 @@ export async function advise(prompt: string, options: AdviseOptions = {}): Promi
     }
   }
 
-  let validation = validateAnswer(answer, packet, context);
+  let validation = validateAnswer(answer, packet, context, { checkAffirmation: false });
 
   if (!validation.ok && mode === "llm") {
     notes.push("live answer failed validation; used library composition");
@@ -159,14 +189,14 @@ export async function advise(prompt: string, options: AdviseOptions = {}): Promi
     mode = "demo";
     provider = "demo";
     model = "library";
-    validation = validateAnswer(answer, packet, context);
+    validation = validateAnswer(answer, packet, context, { checkAffirmation: false });
   }
 
   const guaranteed = ensureQuotedLenses(answer, packet);
   if (guaranteed.swapped > 0) {
     answer = guaranteed.answer;
     notes.push(`quote guarantee: swapped ${guaranteed.swapped} lens(es)`);
-    validation = validateAnswer(answer, packet, context);
+    validation = validateAnswer(answer, packet, context, { checkAffirmation: false });
   }
 
   if (!validation.ok) {
@@ -201,6 +231,7 @@ export async function advise(prompt: string, options: AdviseOptions = {}): Promi
     packet,
     trace,
     mode,
+    analysis: analysis ?? undefined,
   };
 
   if (validation.ok) setCached(key, response);

@@ -47,6 +47,59 @@ const SHORT_NAMES = new Set([
   "weil",
 ]);
 
+const BANNED_AFFIRMATION_PHRASES = [
+  "you are allowed to",
+  "it's okay to",
+  "it is okay to",
+  "give yourself permission",
+  "permission to",
+  "remember that",
+  "your feelings are valid",
+  "you deserve",
+  "at the end of the day",
+  "be kind to yourself",
+  "you are enough",
+  "trust the process",
+  "everything happens for a reason",
+  "let that sink in",
+  "hold space",
+  "you've got this",
+  "you are worthy",
+  "self-care",
+];
+
+const JUDGMENTAL_PATTERNS = [
+  /\byou(?:'re| are) (?:just )?avoiding\b/i,
+  /\bthat(?:'s| is) (?:just )?an excuse\b/i,
+  /\byou should be ashamed\b/i,
+  /\bstop lying to yourself\b/i,
+  /\byou are lying to yourself\b/i,
+  /\bpathetic\b/i,
+  /\bgrow up\b/i,
+];
+
+export function validateAffirmation(text: string): { ok: boolean; errors: string[] } {
+  const errors: string[] = [];
+  const normalized = text.toLowerCase();
+  const words = wordCount(text);
+
+  if (words < 6) errors.push("affirmation is too short to say anything specific");
+  if (words > 40) errors.push(`affirmation too long: ${words} words`);
+
+  for (const phrase of BANNED_AFFIRMATION_PHRASES) {
+    if (normalized.includes(phrase)) {
+      errors.push(`affirmation uses a stock phrase: "${phrase}"`);
+    }
+  }
+
+  for (const pattern of JUDGMENTAL_PATTERNS) {
+    if (pattern.test(text)) errors.push("affirmation is judgmental");
+  }
+
+  return { ok: errors.length === 0, errors };
+}
+
+
 function knownAliases(): Map<string, string> {
   const aliases = new Map<string, string>();
   for (const thinker of THINKERS) {
@@ -67,7 +120,9 @@ export function validateAnswer(
   answer: Answer,
   packet: PacketThinker[],
   prompt = "",
+  options: { checkAffirmation?: boolean } = {},
 ): ValidationResult {
+  const checkAffirmation = options.checkAffirmation ?? true;
   const errors: string[] = [];
   const parsed = answerSchema.safeParse(answer);
 
@@ -113,6 +168,15 @@ export function validateAnswer(
     }
     if (wordCount(lens.affirmation) > 55) {
       errors.push(`affirmation too long: ${wordCount(lens.affirmation)} words`);
+    }
+    if (lens.quoteReason && wordCount(lens.quoteReason) > 40) {
+      errors.push(`quoteReason too long: ${wordCount(lens.quoteReason)} words`);
+    }
+    if (checkAffirmation) {
+      const affirmation = validateAffirmation(lens.affirmation);
+      if (!affirmation.ok) {
+        errors.push(...affirmation.errors.map((error) => `${lens.thinkerId}: ${error}`));
+      }
     }
   }
 

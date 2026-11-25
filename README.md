@@ -53,7 +53,7 @@ The engine boundary is already Discord-ready: `advise()` returns a serializable 
 
 ## The library
 
-**187 thinker profiles · 50 subgenres across 9 genres · 295 top-five seats · 92 sourced quotations.**
+**187 thinker profiles · 50 subgenres across 9 genres · 295 top-five seats · 123 sourced quotations.**
 
 A “seat” is one of the five places in a lineage’s top-five list. The same thinker can sit in several lists; that is intentional. The library is a set of curated paths, not an objective ranking.
 
@@ -69,12 +69,16 @@ The library is a hidden archive in the current UI: `/library` and `/thinker/[id]
 ```
 conversation history + new detail
   → context for retrieval (history + current question)
+  → prompt analysis (real question, stakes, tone, safety)
   → theme extraction (with synonym and negation handling)
   → lineage routing (weighted by themes and direct mentions)
   → candidate scoring (lineage seat, theme tags, quotation, diversity)
-  → a 10-thinker packet, preferring quoted candidates
-  → live LLM or deterministic composer
-  → validation: known IDs, quote ownership, two traditions, no stray name-drops
+  → a 16-thinker packet, preferring quoted candidates
+  → quote-first ranking within each thinker
+  → live writer (DeepSeek V4 Pro when configured)
+  → critic → revise if any score is weak
+  → dedicated green-line affirmation pass
+  → validation: known IDs, quote ownership, two traditions, no stray name-drops, non-judgment
   → quote guarantee: three lenses with real verified quotations
   → quote cycle
 ```
@@ -101,6 +105,17 @@ This is a guardrail, not a proof. The corpus is human-curated and still benefits
 Copy `.env.example` to `.env.local` and set one provider:
 
 ```bash
+# DeepSeek — maximum quality
+LLM_PROVIDER=deepseek
+DEEPSEEK_API_KEY=...
+LLM_BASE_URL=https://api.deepseek.com
+LLM_MODEL=deepseek-v4-pro
+LLM_ANALYSIS_MODEL=deepseek-v4-pro
+LLM_CRITIC_MODEL=deepseek-v4-pro
+LLM_AFFIRMATION_MODEL=deepseek-v4-pro
+LLM_WRITER_EFFORT=max
+LLM_CRITIC_EFFORT=max
+
 # Anthropic
 LLM_PROVIDER=anthropic
 LLM_API_KEY=sk-ant-...
@@ -117,6 +132,8 @@ LLM_PROVIDER=ollama
 LLM_MODEL=llama3.3
 LLM_BASE_URL=http://127.0.0.1:11434
 ```
+
+The DeepSeek path uses `deepseek-v4-pro` with thinking enabled and `reasoning_effort: max` for the writer and critic. Analysis and the green-line pass run at high reasoning by default. DeepSeek's legacy `deepseek-chat` and `deepseek-reasoner` names were retired in July 2026.
 
 The API key is server-only. The client never sees it. If the provider is missing, slow, or returns invalid JSON, the app falls back gracefully rather than breaking.
 
@@ -183,21 +200,23 @@ app/
 components/
   ask-client.tsx           Conversation thread, history, pending state
   quote-cycle.tsx          One quote at a time, back control, inline reading notes, ask-again
-  reading-notes.tsx        Context, quick breakdown, explanation, life-affirming note
+  reading-notes.tsx        Context, quick breakdown, and explanation; the green line lives above the quote
   portrait.tsx             Local WebP portrait with silhouette fallback
   feedback.tsx             Retained for a future non-quote surface
   monogram.tsx             Legacy typographic portrait used by the retained source drawer
 lib/
-  advise.ts                History, exclusions, synthesis, validation, quote guarantee
+  advise.ts                History, exclusions, prompt analysis, synthesis, validation, quote guarantee
   retrieve.ts              Theme extraction, lineage routing, exclusions, candidate scoring
-  packet.ts                Build the ten-thinker packet
+  analysis.ts              Structured analysis of the real question
+  quote-search.ts          Quote-first ranking and catalog construction
+  packet.ts                Build the sixteen-thinker packet
   compose.ts               Curated fixture + deterministic template composer
   validate.ts              Source, diversity, and name checks
   affirmations.ts          Theme-based fallback affirmations for demo/legacy answers
   portraits.ts             Loads the local portrait manifest
   answers.ts               Local answer/feedback persistence
   rate-limit.ts            In-memory hourly limits
-  llm/                     Provider adapters and structured answer contract
+  llm/                     DeepSeek/OpenAI/Anthropic/Ollama adapters, writer, critic, affirmation
   taxonomy.ts              Genres, subgenres, top-five lists, rationales
   themes.ts                Theme vocabulary, triggers, practices, questions
   schema.ts                Zod schemas and shared types
@@ -205,6 +224,7 @@ data/
   thinkers/                Profiles by tradition
   portraits.json           Portrait source manifest and license metadata
   quotes.ts                Extra verified quotations merged into profiles
+  quotes-expanded.ts       Second-pass verified quote expansion
 public/
   portraits/               Local 256x256 WebP portraits and fallback.svg
 scripts/
@@ -221,8 +241,9 @@ tests/                     Corpus, engine, golden set, conversation, cost, rate-
 - This is a curated MVP, not a complete canon. “Top five” is an editorial choice.
 - Some traditions are represented by foundational theorists as well as strict philosophers (for example Huizinga, Zeami, and Leopold).
 - The Indigenous Philosophies node names specific thinkers rather than claiming to speak for “Indigenous thought” as a whole.
-- 92 quotations is a start, not a complete quote bank. Many profiles are paraphrase-only.
+- 123 quotations is a start, not a complete quote bank. Ninety-two profiles still have no verified quotation, so the quote-first packet prefers the 95 thinkers that do.
 - The deterministic composer is deliberately plainer than live synthesis. It exists so the app never depends on a key.
+- The max-quality DeepSeek path makes several calls — analysis, writer, critic/revise, and a dedicated green-line pass — and can take roughly 20–45 seconds. A missing key falls back to demo mode.
 - In demo mode, the quote picked from a thinker can be less targeted than a live model’s selection; the full theory is still in the library profile.
 - Answers are stored in `~/.philos-friend` by default. For a public multi-instance deployment, swap in Postgres or Redis before scaling.
 - Rate limiting is in-memory and per process. A multi-instance deployment needs a shared Redis limiter.

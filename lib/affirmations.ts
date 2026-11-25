@@ -1,110 +1,61 @@
 import type { ThemeId } from "./schema";
 
 /**
- * Warm, permission-giving lines used in demo mode and whenever a stored answer
- * predates the affirmation field. Live synthesis writes a bespoke line.
+ * Theme-level fallbacks used in demo mode and when a stored answer predates
+ * the affirmation field. Live synthesis writes a quote-specific line.
  */
 export const AFFIRMATIONS: Partial<Record<ThemeId, string>> = {
-  competition:
-    "You are allowed to play without turning the score into a verdict on your worth.",
-  winning:
-    "You are allowed to want the win without making it the price of your own permission.",
-  play:
-    "You are allowed to enjoy the game before you have earned the ending.",
-  fun:
-    "You are allowed to have a good time without justifying it with a result.",
-  recognition:
-    "You are allowed to want to be seen without auditioning for it.",
-  status:
-    "You are allowed to be a person, not a ranking.",
-  desire:
-    "You can want more without believing that more is what will finally make you safe.",
-  attachment:
-    "You are allowed to hold what you love without gripping it into a test.",
-  control:
-    "You are allowed to put down what was never yours to carry.",
-  effort:
-    "You are allowed to measure the attempt, not only the outcome.",
-  comparison:
-    "You are allowed to be a person, not a measuring stick.",
-  validation:
-    "You are allowed to stop waiting for a verdict that no score can deliver.",
-  meaning:
-    "You are allowed to make meaning in small, ordinary ways.",
-  boredom:
-    "You are allowed to be still long enough to hear what you actually want.",
-  anxiety:
-    "You are allowed to act before the fear goes away.",
-  freedom:
-    "You are allowed to choose a life that does not fit the sentence you were handed.",
-  authenticity:
-    "You are allowed to be the person you are when no one is grading you.",
-  excellence:
-    "You are allowed to practice without turning every attempt into a final exam.",
-  community:
-    "You are allowed to need people. That is not a failure of independence.",
-  work:
-    "You are allowed to work without letting work become your whole name.",
-  money:
-    "You are allowed to want enough without letting enough become a moving target.",
-  love:
-    "You are allowed to love without turning the other person into proof of your worth.",
-  death:
-    "You are allowed to let finitude make your life more tender, not smaller.",
-  anger:
-    "You are allowed to turn anger into a boundary instead of a verdict.",
-  envy:
-    "You are allowed to let envy point at a want instead of a sentence about your worth.",
-  habit:
-    "You are allowed to change the cue instead of declaring war on yourself.",
-  attention:
-    "You are allowed to give one thing your whole attention.",
-  impermanence:
-    "You are allowed to let things pass without calling their passing a failure.",
-  self:
-    "You are allowed to be more than the story you have been telling about yourself.",
-  duty:
-    "You are allowed to ask who an obligation is really for.",
-  pleasure:
-    "You are allowed to enjoy something without earning it first.",
-  friendship:
-    "You are allowed to reach first and let yourself be found.",
-  power:
-    "You are allowed to notice the power you have and use it gently.",
-  justice:
-    "You are allowed to name what is unfair without waiting to be certain.",
-  care:
-    "You are allowed to care for someone without disappearing into the care.",
-  courage:
-    "You are allowed to be afraid and still take the next step.",
-  wisdom:
-    "You are allowed to change your mind. That is what thinking is for.",
-  fate:
-    "You are allowed to grieve what happened and still choose what comes next.",
-  hope:
-    "You are allowed to act as if the better thing were possible.",
-  loneliness:
-    "You are allowed to make the bid for connection that scares you.",
-  education:
-    "You are allowed to learn something that has no immediate use.",
-  nature:
-    "You are allowed to let the world be larger than your current problem.",
-  technology:
-    "You are allowed to put the tool down and come back to your own attention.",
-  language:
-    "You are allowed to say the thing more plainly.",
-  science:
-    "You are allowed to be wrong in public and call it learning.",
-  mind:
-    "You are allowed to notice a thought without becoming it.",
-  art:
-    "You are allowed to make something before it is good.",
-  joy:
-    "You are allowed to notice what is already good without waiting for the other shoe.",
+  competition: "The contest can be real without becoming the final word on what you are worth.",
+  winning: "Wanting the win is human; making it the price of your own permission is the trap.",
+  play: "The game is worth playing before you are good at it, and before it proves anything.",
+  fun: "Enjoyment is evidence enough that something is worth doing.",
+  recognition: "Being seen is a need, not a performance review.",
+  status: "A ranking can describe a race; it cannot describe a person.",
+  desire: "Wanting more is not the problem; the promise you attach to more is.",
+  attachment: "Hold what you love firmly enough to care, loosely enough to breathe.",
+  control: "You can put down what was never yours to carry.",
+  effort: "Measure the attempt with the same care you give the outcome.",
+  comparison: "A measuring stick can tell you about a race, not about a person.",
+  validation: "The verdict you are waiting for cannot be earned from a scoreboard.",
+  meaning: "Meaning is often made in small, ordinary acts rather than grand conclusions.",
+  boredom: "Stillness is not emptiness; it is where you can hear what you actually want.",
+  anxiety: "The next step can be taken before the fear has finished arguing.",
+  freedom: "A life can be chosen, not only inherited.",
+  authenticity: "The person you are when no one is grading you is still you.",
+  excellence: "Practice can be a place to learn, not a final exam you keep failing.",
+  community: "Needing people is not a failure of independence.",
+  work: "Work can be important without becoming your whole name.",
+  money: "Enough is a number you can define before it defines you.",
+  love: "Love can be real without turning another person into proof of your worth.",
+  death: "Finitude can make life more tender, not smaller.",
+  anger: "Anger can become a boundary without becoming a verdict.",
+  envy: "Envy can point at a want without becoming a sentence about your worth.",
+  habit: "A habit can be changed at the cue, without declaring war on yourself.",
+  attention: "One thing, given your whole attention, is a way back to the world.",
+  impermanence: "Things can pass without their passing being a failure.",
+  self: "You are more than the story you have been telling about yourself.",
+  duty: "An obligation can be examined without making you a bad person.",
+  pleasure: "Pleasure does not have to be earned before it is enjoyed.",
+  friendship: "A first reach can be an act of courage, not a debt.",
+  power: "Power can be noticed and used gently.",
+  justice: "An unfairness can be named without waiting to be certain about everything.",
+  care: "Care can hold someone without disappearing into the holding.",
+  courage: "Fear can be present while the next step is still taken.",
+  wisdom: "Changing your mind is what thinking is for.",
+  fate: "What happened can be grieved while what comes next is still chosen.",
+  hope: "The better thing can be acted toward before it is guaranteed.",
+  loneliness: "The bid for connection that scares you is still worth making.",
+  education: "Learning something with no immediate use can still change you.",
+  nature: "The world can be larger than the problem currently filling your view.",
+  technology: "The tool can be put down while you come back to your own attention.",
+  language: "The plain sentence is often the brave one.",
+  science: "Being wrong in public can be a form of learning.",
+  mind: "A thought can be noticed without becoming the whole of you.",
+  art: "Something can be made before it is good.",
+  joy: "What is already good can be noticed without waiting for the other shoe.",
 };
 
-const DEFAULT_AFFIRMATION =
-  "You are allowed to take what helps and leave the rest. A quote is a companion, not a verdict.";
+const DEFAULT_AFFIRMATION = "A quote can be a companion, not a verdict.";
 
 export function affirmationFor(
   tags: readonly ThemeId[],

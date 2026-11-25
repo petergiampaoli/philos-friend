@@ -23,7 +23,7 @@ describe("advise", () => {
     const response = await advise(question);
     expect(response.trace.valid).toBe(true);
     expect(response.answer.lenses).toHaveLength(3);
-    expect(response.packet.length).toBe(10);
+    expect(response.packet.length).toBe(16);
   });
 
   it("keeps answers inside the source packet", async () => {

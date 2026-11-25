@@ -63,6 +63,10 @@ export const quoteSchema = z.object({
   translator: z.string().optional(),
   year: z.string().optional(),
   sourceUrl: z.string().optional(),
+  paraphrase: z.string().min(10).max(300).optional(),
+  context: z.string().min(10).max(600).optional(),
+  themes: z.array(themeIdSchema).max(8).optional(),
+  tone: z.string().max(100).optional(),
   status: z.literal("verified"),
 });
 
@@ -103,6 +107,7 @@ export const lensSchema = z.object({
   theory: z.string().min(40).max(1000),
   application: z.string().min(20).max(700),
   affirmation: z.string().min(20).max(500),
+  quoteReason: z.string().min(3).max(300).optional(),
 });
 
 export const answerSchema = z.object({
@@ -119,6 +124,22 @@ export type Thinker = z.infer<typeof thinkerSchema>;
 export type Lineage = z.infer<typeof lineageSchema>;
 export type Lens = z.infer<typeof lensSchema>;
 export type Answer = z.infer<typeof answerSchema>;
+
+export const promptAnalysisSchema = z.object({
+  surfaceQuestion: z.string().min(3).max(500),
+  realQuestion: z.string().min(3).max(500),
+  emotionalTone: z.array(z.string().min(2).max(60)).max(6),
+  stakes: z.string().min(3).max(500),
+  underlyingBelief: z.string().min(3).max(500),
+  avoidedTruth: z.string().min(3).max(500),
+  whatWouldHelp: z.enum(["challenge", "consolation", "clarification", "permission", "practice"]),
+  themes: z.array(themeIdSchema).max(8),
+  quoteSearchTerms: z.array(z.string().min(2).max(80)).max(12),
+  tone: z.string().min(3).max(160),
+  safety: z.enum(["normal", "care"]),
+});
+
+export type PromptAnalysis = z.infer<typeof promptAnalysisSchema>;
 
 export type PublicQuote = Quote & {
   thinkerId: string;
@@ -166,5 +187,6 @@ export type AdviseResponse = {
   packet: PacketThinker[];
   trace: Trace;
   mode: "demo" | "llm";
+  analysis?: PromptAnalysis;
   shareUrl?: string;
 };

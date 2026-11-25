@@ -22,7 +22,7 @@ export function cacheKey(args: {
         provider: args.provider,
         model: args.model,
         exclude: args.exclude ?? [],
-        corpus: "v1",
+        corpus: "v2",
       }),
     )
     .digest("hex");

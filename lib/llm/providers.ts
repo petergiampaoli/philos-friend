@@ -1,15 +1,20 @@
-export type ProviderName = "openai" | "anthropic" | "ollama";
+export type ProviderName = "openai" | "anthropic" | "ollama" | "deepseek";
+
+export type ProviderStage = "analysis" | "writer" | "critic" | "affirmation";
 
 export type ProviderConfig = {
   provider: ProviderName;
   model: string;
   apiKey?: string;
   baseUrl: string;
+  stage: ProviderStage;
+  reasoningEffort?: "none" | "low" | "high" | "max";
 };
 
 export type ProviderUsage = {
   inputTokens?: number;
   outputTokens?: number;
+  reasoningTokens?: number;
 };
 
 export type ProviderResult = {
@@ -19,17 +24,56 @@ export type ProviderResult = {
   usage?: ProviderUsage;
 };
 
-export function getProviderConfig(): ProviderConfig | null {
+export type CallOptions = {
+  temperature?: number;
+  maxTokens?: number;
+  stage?: ProviderStage;
+  json?: boolean;
+};
+
+const STAGE_MODEL_ENV: Record<ProviderStage, string> = {
+  analysis: "LLM_ANALYSIS_MODEL",
+  writer: "LLM_MODEL",
+  critic: "LLM_CRITIC_MODEL",
+  affirmation: "LLM_AFFIRMATION_MODEL",
+};
+
+const STAGE_EFFORT_ENV: Record<ProviderStage, string> = {
+  analysis: "LLM_ANALYSIS_EFFORT",
+  writer: "LLM_WRITER_EFFORT",
+  critic: "LLM_CRITIC_EFFORT",
+  affirmation: "LLM_AFFIRMATION_EFFORT",
+};
+
+function validEffort(value: string | undefined): "none" | "low" | "high" | "max" | undefined {
+  if (value === "none" || value === "low" || value === "high" || value === "max") return value;
+  return undefined;
+}
+
+export function getProviderConfig(stage: ProviderStage = "writer"): ProviderConfig | null {
   const raw = (process.env.LLM_PROVIDER ?? "").trim().toLowerCase();
   if (!raw || raw === "demo") return null;
-  if (raw !== "openai" && raw !== "anthropic" && raw !== "ollama") return null;
+  if (raw !== "openai" && raw !== "anthropic" && raw !== "ollama" && raw !== "deepseek") {
+    return null;
+  }
 
-  const apiKey = process.env.LLM_API_KEY?.trim();
+  const apiKey =
+    raw === "deepseek"
+      ? process.env.DEEPSEEK_API_KEY?.trim() || process.env.LLM_API_KEY?.trim()
+      : process.env.LLM_API_KEY?.trim();
+
   if (raw !== "ollama" && !apiKey) return null;
 
-  const model =
-    process.env.LLM_MODEL?.trim() ||
-    (raw === "anthropic" ? "claude-sonnet-4-5" : raw === "openai" ? "gpt-4.1-mini" : "llama3.3");
+  const stageModel = process.env[STAGE_MODEL_ENV[stage]]?.trim();
+  const fallbackModel =
+    raw === "anthropic"
+      ? "claude-sonnet-4-5"
+      : raw === "openai"
+        ? "gpt-4.1-mini"
+        : raw === "deepseek"
+          ? "deepseek-v4-pro"
+          : "llama3.3";
+  const model = stageModel || process.env.LLM_MODEL?.trim() || fallbackModel;
 
   const baseUrl =
     process.env.LLM_BASE_URL?.trim().replace(/\/+$/, "") ||
@@ -37,16 +81,35 @@ export function getProviderConfig(): ProviderConfig | null {
       ? "https://api.anthropic.com/v1"
       : raw === "openai"
         ? "https://api.openai.com/v1"
-        : "http://127.0.0.1:11434");
+        : raw === "deepseek"
+          ? "https://api.deepseek.com"
+          : "http://127.0.0.1:11434");
 
-  return { provider: raw, model, apiKey, baseUrl };
+  const defaultEffort = stage === "writer" || stage === "critic" ? "max" : "high";
+  const reasoningEffort =
+    validEffort(process.env[STAGE_EFFORT_ENV[stage]]?.trim()) ??
+    (raw === "deepseek" ? defaultEffort : undefined);
+
+  return { provider: raw, model, apiKey, baseUrl, stage, reasoningEffort };
 }
 
 function usageFromOpenAi(data: unknown): ProviderUsage | undefined {
   if (data && typeof data === "object" && "usage" in data) {
-    const usage = (data as { usage?: { prompt_tokens?: number; completion_tokens?: number } }).usage;
+    const usage = (
+      data as {
+        usage?: {
+          prompt_tokens?: number;
+          completion_tokens?: number;
+          completion_tokens_details?: { reasoning_tokens?: number };
+        };
+      }
+    ).usage;
     if (usage) {
-      return { inputTokens: usage.prompt_tokens, outputTokens: usage.completion_tokens };
+      return {
+        inputTokens: usage.prompt_tokens,
+        outputTokens: usage.completion_tokens,
+        reasoningTokens: usage.completion_tokens_details?.reasoning_tokens,
+      };
     }
   }
   return undefined;
@@ -117,8 +180,60 @@ export async function callProvider(
   system: string,
   user: string,
   schema: Record<string, unknown>,
+  options: CallOptions = {},
 ): Promise<ProviderResult> {
-  const signal = AbortSignal.timeout(45_000);
+  const signal = AbortSignal.timeout(120_000);
+  const temperature = options.temperature ?? 0.7;
+  const maxTokens = options.maxTokens ?? 6000;
+
+  if (config.provider === "deepseek") {
+    // DeepSeek's Chat Completions endpoint supports JSON mode, not JSON Schema.
+    // The prompt and local Zod validation carry the structural contract.
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const response = await fetch(`${config.baseUrl}/chat/completions`, {
+        method: "POST",
+        signal,
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${config.apiKey ?? ""}`,
+        },
+        body: JSON.stringify({
+          model: config.model,
+          max_tokens: maxTokens,
+          temperature,
+          stream: false,
+          messages: [
+            { role: "system", content: system },
+            { role: "user", content: user },
+          ],
+          response_format: { type: "json_object" },
+          thinking: { type: "enabled" },
+          reasoning_effort: config.reasoningEffort ?? "high",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`DeepSeek ${response.status}: ${(await response.text()).slice(0, 300)}`);
+      }
+
+      const data = await response.json();
+      const raw = textFromOpenAi(data);
+      if (raw.trim().length > 0) {
+        return {
+          provider: config.provider,
+          model: config.model,
+          raw,
+          usage: usageFromOpenAi(data),
+        };
+      }
+
+      // DeepSeek's JSON mode can return blank content. Retry once with a
+      // sharper reminder before falling back to the repair path.
+      await new Promise((resolve) => setTimeout(resolve, 600));
+    }
+
+    throw new Error("DeepSeek returned an empty JSON response.");
+  }
 
   if (config.provider === "anthropic") {
     const response = await fetch(`${config.baseUrl}/messages`, {
@@ -131,19 +246,18 @@ export async function callProvider(
       },
       body: JSON.stringify({
         model: config.model,
-        max_tokens: 1400,
-        temperature: 0.75,
+        max_tokens: maxTokens,
+        temperature,
         system,
         messages: [{ role: "user", content: user }],
         tools: [
           {
-            name: "emit_philosophy_answer",
-            description:
-              "Emit the structured philosophy answer. The quote text is rendered by the app from quote IDs, never by the model.",
+            name: "emit_json",
+            description: "Emit the requested structured JSON object.",
             input_schema: schema,
           },
         ],
-        tool_choice: { type: "tool", name: "emit_philosophy_answer" },
+        tool_choice: { type: "tool", name: "emit_json" },
       }),
     });
 
@@ -169,7 +283,7 @@ export async function callProvider(
         model: config.model,
         stream: false,
         format: schema,
-        options: { temperature: 0.75, num_predict: 1200 },
+        options: { temperature, num_predict: maxTokens },
         messages: [
           { role: "system", content: system },
           { role: "user", content: user },
@@ -199,8 +313,8 @@ export async function callProvider(
     },
     body: JSON.stringify({
       model: config.model,
-      max_tokens: 1200,
-      temperature: 0.75,
+      max_tokens: maxTokens,
+      temperature,
       messages: [
         { role: "system", content: system },
         { role: "user", content: user },

@@ -289,7 +289,7 @@ const FIXTURES: Record<string, Answer> = {
         application:
           "If a game only counts when you win, you have quietly turned play into work with a scoreboard. The question is not how to stop caring about winning. It is how to care about the obstacle enough that the result becomes secondary.",
         affirmation:
-          "You are allowed to play before you are good at it. The obstacle is not a debt you owe; it is the shape of the joy.",
+          "The obstacle is not a debt you owe; it is the shape of the joy.",
       },
       {
         thinkerId: "beauvoir",
@@ -300,7 +300,7 @@ const FIXTURES: Record<string, Answer> = {
         application:
           "Ask whose scoreboard you are playing on. If the answer is 'the people who never quite saw me,' the win will not satisfy you for long. The recognition you want has to come from a relationship, not a ranking.",
         affirmation:
-          "You are allowed to want to be seen without turning yourself into a scoreboard.",
+          "A scoreboard can record a result without recording your worth.",
       },
       {
         thinkerId: "epicurus",

@@ -16,6 +16,8 @@ export type Retrieval = {
 
 export type RetrieveOptions = {
   excludeThinkerIds?: string[];
+  limit?: number;
+  extraThemes?: ThemeId[];
 };
 
 const RELATED_THEMES: Partial<Record<ThemeId, ThemeId[]>> = {
@@ -324,7 +326,22 @@ function pickDiverse(
 }
 
 export function retrieve(prompt: string, options: RetrieveOptions = {}): Retrieval {
-  const themeHits = extractThemeHits(prompt);
+  const directHits = extractThemeHits(prompt);
+  let themeHits = directHits;
+
+  if (options.extraThemes?.length) {
+    const merged = new Map(directHits.map((hit) => [hit.id, hit]));
+    for (const id of options.extraThemes) {
+      const existing = merged.get(id);
+      merged.set(id, {
+        id,
+        score: (existing?.score ?? 0) + 6,
+        direct: true,
+      });
+    }
+    themeHits = [...merged.values()].sort((a, b) => b.score - a.score).slice(0, 14);
+  }
+
   const lineages = routeLineages(prompt, themeHits);
   const allScored = scoreCandidates(prompt, themeHits, lineages);
   const excluded = new Set(options.excludeThinkerIds ?? []);
@@ -356,7 +373,7 @@ export function retrieve(prompt: string, options: RetrieveOptions = {}): Retriev
     }
   }
 
-  const candidates = pickDiverse(ranked, scoreMap, 10, anchors).sort(
+  const candidates = pickDiverse(ranked, scoreMap, options.limit ?? 10, anchors).sort(
     (a, b) => (scoreMap.get(b.id) ?? 0) - (scoreMap.get(a.id) ?? 0),
   );
 
