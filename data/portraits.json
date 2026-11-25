@@ -1,0 +1,1351 @@
+{
+  "thales": {
+    "src": "/portraits/thales.webp",
+    "pageTitle": "Thales of Miletus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arte_romana,_testa_di_talete_di_mileto,_II_sec..JPG",
+    "author": "Sailko",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "anaximander": {
+    "src": "/portraits/anaximander.webp",
+    "pageTitle": "Anaximander",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pietro_Bellotti_(attr)_Anaximander.jpg",
+    "author": "Attributed to Pietro Bellotti",
+    "license": "Public domain"
+  },
+  "heraclitus": {
+    "src": "/portraits/heraclitus.webp",
+    "pageTitle": "Heraclitus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Heraclitus_b_4_compressed.jpg",
+    "author": "RoyFokker",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "parmenides": {
+    "src": "/portraits/parmenides.webp",
+    "pageTitle": "Parmenides",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Busto_di_Parmenide_(cropped).jpg",
+    "author": "Sergio Spolti",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "democritus": {
+    "src": "/portraits/democritus.webp",
+    "pageTitle": "Democritus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Unknown_greek_pushkin.jpg",
+    "author": "user:shakko",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "socrates": {
+    "src": "/portraits/socrates.webp",
+    "pageTitle": "Socrates",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Socrates_Louvre.jpg",
+    "author": "Copy of Lysippos (?)",
+    "license": "Public domain"
+  },
+  "plato": {
+    "src": "/portraits/plato.webp",
+    "pageTitle": "Plato",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plato_Silanion_Musei_Capitolini_MC1377.png",
+    "author": "Marie-Lan Nguyen",
+    "license": "Public domain"
+  },
+  "xenophon": {
+    "src": "/portraits/xenophon.webp",
+    "pageTitle": "Xenophon",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bust_of_Xenophon.jpg",
+    "author": "Carole Raddato",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  "plotinus": {
+    "src": "/portraits/plotinus.webp",
+    "pageTitle": "Plotinus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plotinos.jpg",
+    "author": "Anonymous Unknown author",
+    "license": "Public domain"
+  },
+  "proclus": {
+    "src": "/portraits/proclus.webp",
+    "pageTitle": "Proclus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:In_primum_Euclidis_elementorum_librum_01.jpg",
+    "author": "Euclid Francesco Barozzi",
+    "license": "Public domain"
+  },
+  "aristotle": {
+    "src": "/portraits/aristotle.webp",
+    "pageTitle": "Aristotle",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aristotle_Altemps_Inv8575.jpg",
+    "author": "After Lysippos",
+    "license": "Public domain"
+  },
+  "theophrastus": {
+    "src": "/portraits/theophrastus.webp",
+    "pageTitle": "Theophrastus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Teofrasto_Orto_botanico_detail.jpg",
+    "author": "Teofrasto_Orto_botanico_PA.jpg : tato grasso derivative work: Singinglemon ( talk )",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  "alexander-aphrodisias": {
+    "src": "/portraits/alexander-aphrodisias.webp",
+    "pageTitle": "Alexander of Aphrodisias",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Recueil._Portraits_d%27Alexandre_d%27Aphrodisia_-_btv1b85293154.jpg",
+    "license": "Public domain"
+  },
+  "averroes": {
+    "src": "/portraits/averroes.webp",
+    "pageTitle": "Averroes",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andrea_di_bonaiuto,_apoteosi_di_san_tommaso_d%27aquino,_11_averro%C3%A8.jpg",
+    "author": "Sailko",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "aquinas": {
+    "src": "/portraits/aquinas.webp",
+    "pageTitle": "Thomas Aquinas",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:St-thomas-aquinasFXD.jpg",
+    "author": "Carlo Crivelli",
+    "license": "Public domain"
+  },
+  "zeno": {
+    "src": "/portraits/zeno.webp",
+    "pageTitle": "Zeno of Citium",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paolo_Monti_-_Servizio_fotografico_(Napoli,_1969)_-_BEIC_6353768.jpg",
+    "author": "Paolo Monti",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "chrysippus": {
+    "src": "/portraits/chrysippus.webp",
+    "pageTitle": "Chrysippus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chrysippos_BM_1846.jpg",
+    "author": "Unknown artist Unknown artist",
+    "license": "Public domain"
+  },
+  "seneca": {
+    "src": "/portraits/seneca.webp",
+    "pageTitle": "Seneca the Younger",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Duble_herma_of_Socrates_and_Seneca_Antikensammlung_Berlin_07.jpg",
+    "author": "Calidius",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "epictetus": {
+    "src": "/portraits/epictetus.webp",
+    "pageTitle": "Epictetus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Epicteti_Enchiridion_Latinis_versibus_adumbratum_(Oxford_1715)_frontispiece_(cropped).jpg",
+    "author": "William Sonmans / Michael Burghers",
+    "license": "Public domain"
+  },
+  "marcus-aurelius": {
+    "src": "/portraits/marcus-aurelius.webp",
+    "pageTitle": "Marcus Aurelius",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:MSR-ra-61-b-1-DM.jpg",
+    "author": "Daniel Martin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "epicurus": {
+    "src": "/portraits/epicurus.webp",
+    "pageTitle": "Epicurus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Epikouros_BM_1843.jpg",
+    "author": "Unknown artist Unknown artist",
+    "license": "Public domain"
+  },
+  "lucretius": {
+    "src": "/portraits/lucretius.webp",
+    "pageTitle": "Lucretius",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lucretius_pointing_to_the_casus.jpg",
+    "author": "Designed by “T. C.” (possibly Thomas Creech, died 1700); drawn and engraved by M. Burghers",
+    "license": "Public domain"
+  },
+  "pyrrho": {
+    "src": "/portraits/pyrrho.webp",
+    "pageTitle": "Pyrrho"
+  },
+  "sextus-empiricus": {
+    "src": "/portraits/sextus-empiricus.webp",
+    "pageTitle": "Sextus Empiricus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sexti_Empirici_Adversus_mathematicos.djvu",
+    "author": "Adversus mathematicos",
+    "license": "Public domain"
+  },
+  "arcesilaus": {
+    "src": "/portraits/arcesilaus.webp",
+    "pageTitle": "Arcesilaus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arcesilaus_and_Carneades.jpg",
+    "author": "Cicero_Academica_1810_title_page.jpg : Marcus Tullius Cicero derivative work: Singinglemon ( talk )",
+    "license": "Public domain"
+  },
+  "porphyry": {
+    "src": "/portraits/porphyry.webp",
+    "pageTitle": "Porphyry of Tyre",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait_of_Porphyry_of_Tyre_from_Les_vrais_pourtraits_et_vies_des_hommes_illustres_grecz,_latins_et_payens.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "augustine": {
+    "src": "/portraits/augustine.webp",
+    "pageTitle": "Augustine of Hippo",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Augustine_by_Philippe_de_Champaigne.jpg",
+    "author": "Philippe de Champaigne",
+    "license": "Public domain"
+  },
+  "pseudo-dionysius": {
+    "src": "/portraits/pseudo-dionysius.webp",
+    "pageTitle": "Pseudo-Dionysius the Areopagite",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plotin.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "anselm": {
+    "src": "/portraits/anselm.webp",
+    "pageTitle": "Anselm of Canterbury",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anselm_of_Canterbury,_seal.svg",
+    "author": "Anselm_of_Canterbury,_seal.jpg : The original uploader was Srnec at English Wikipedia . derivative work: MLWatts",
+    "license": "Public domain"
+  },
+  "abelard": {
+    "src": "/portraits/abelard.webp",
+    "pageTitle": "Peter Abelard",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Piotr_Abelard_(cropped).jpg",
+    "author": "Antoni Oleszczyński",
+    "license": "Public domain"
+  },
+  "scotus": {
+    "src": "/portraits/scotus.webp",
+    "pageTitle": "Duns Scotus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Scoto_(Duns_Scoto).jpg",
+    "author": "Justus van Gent / Pedro Berruguete",
+    "license": "Public domain"
+  },
+  "ockham": {
+    "src": "/portraits/ockham.webp",
+    "pageTitle": "William of Ockham",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:William_of_Ockham.png",
+    "author": "self-created (Moscarlop)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "al-farabi": {
+    "src": "/portraits/al-farabi.webp",
+    "pageTitle": "Al-Farabi",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alpharabius_in_Liber_Chronicarum_1493_AD.png",
+    "author": "Mr.Nostalgic",
+    "license": "Public domain"
+  },
+  "ibn-sina": {
+    "src": "/portraits/ibn-sina.webp",
+    "pageTitle": "Avicenna",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Avicenna_Bust,_left_profile_(cropped).jpg",
+    "author": "National Library of Medicine",
+    "license": "No restrictions",
+    "licenseUrl": "https://www.flickr.com/commons/usage/"
+  },
+  "al-ghazali": {
+    "src": "/portraits/al-ghazali.webp",
+    "pageTitle": "Al-Ghazali",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Al-Ghaz%C4%81l%C4%AB,_Sayr_mulhimah_min_al-Sharq_wa-al-Gharb.png",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "maimonides": {
+    "src": "/portraits/maimonides.webp",
+    "pageTitle": "Maimonides",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait_of_Moses_Maimonides_in_Thesaurus_antiquitatum_sacrarum.tif",
+    "author": "Blaisio Ugolino",
+    "license": "Public domain"
+  },
+  "petrarch": {
+    "src": "/portraits/petrarch.webp",
+    "pageTitle": "Petrarch",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait_of_Francesco_Petrarca_(called_Petrarch)_-_French_school,_17th_century.jpg",
+    "license": "Public domain"
+  },
+  "pico": {
+    "src": "/portraits/pico.webp",
+    "pageTitle": "Giovanni Pico della Mirandola",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pico1.jpg",
+    "author": "Cristofano dell'Altissimo",
+    "license": "Public domain"
+  },
+  "erasmus": {
+    "src": "/portraits/erasmus.webp",
+    "pageTitle": "Erasmus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holbein-erasmus.jpg",
+    "author": "Hans Holbein the Younger",
+    "license": "Public domain"
+  },
+  "machiavelli": {
+    "src": "/portraits/machiavelli.webp",
+    "pageTitle": "Niccolò Machiavelli",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg",
+    "author": "Santi di Tito",
+    "license": "Public domain"
+  },
+  "montaigne": {
+    "src": "/portraits/montaigne.webp",
+    "pageTitle": "Michel de Montaigne",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait_of_Michel_de_Montaigne,_circa_unknown.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "descartes": {
+    "src": "/portraits/descartes.webp",
+    "pageTitle": "René Descartes",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
+    "author": "After Frans Hals",
+    "license": "Public domain"
+  },
+  "spinoza": {
+    "src": "/portraits/spinoza.webp",
+    "pageTitle": "Baruch Spinoza",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Spinoza.jpg",
+    "author": "anonymous",
+    "license": "Public domain"
+  },
+  "leibniz": {
+    "src": "/portraits/leibniz.webp",
+    "pageTitle": "Gottfried Wilhelm Leibniz",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_(ca._1695).jpg",
+    "author": "Christoph Bernhard Francke",
+    "license": "Public domain"
+  },
+  "malebranche": {
+    "src": "/portraits/malebranche.webp",
+    "pageTitle": "Nicolas Malebranche",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portret_van_Nicolas_Malebranche,_RP-P-OB-72.656_(cropped).jpg",
+    "author": "Rijksmuseum",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "wolff": {
+    "src": "/portraits/wolff.webp",
+    "pageTitle": "Christian Wolff (philosopher)",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christian-Wolff_Gem%C3%A4lde.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "bacon": {
+    "src": "/portraits/bacon.webp",
+    "pageTitle": "Francis Bacon",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Somer_Francis_Bacon.jpg",
+    "author": "Paul van Somer I / Formerly attributed to Frans Pourbus the Younger",
+    "license": "Public domain"
+  },
+  "locke": {
+    "src": "/portraits/locke.webp",
+    "pageTitle": "John Locke",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Godfrey_Kneller_-_Portrait_of_John_Locke_(Hermitage).jpg",
+    "author": "Godfrey Kneller",
+    "license": "Public domain"
+  },
+  "berkeley": {
+    "src": "/portraits/berkeley.webp",
+    "pageTitle": "George Berkeley",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Smibert_-_Bishop_George_Berkeley_-_Google_Art_Project_(cropped).jpg",
+    "author": "John Smibert",
+    "license": "Public domain"
+  },
+  "hume": {
+    "src": "/portraits/hume.webp",
+    "pageTitle": "David Hume",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:David_Hume_Ramsay.jpg",
+    "author": "Allan Ramsay",
+    "license": "Public domain"
+  },
+  "reid": {
+    "src": "/portraits/reid.webp",
+    "pageTitle": "Thomas Reid",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:ThomasReid.jpg",
+    "license": "Public domain"
+  },
+  "hobbes": {
+    "src": "/portraits/hobbes.webp",
+    "pageTitle": "Thomas Hobbes",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thomas_Hobbes_by_John_Michael_Wright_(colour)_(3x4_cropped).jpg",
+    "author": "John Michael Wright",
+    "license": "Public domain"
+  },
+  "rousseau": {
+    "src": "/portraits/rousseau.webp",
+    "pageTitle": "Jean-Jacques Rousseau",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maurice_Quentin_de_La_Tour_-_Portrait_of_Jean-Jacques_Rousseau_-_adjusted.jpg",
+    "author": "Maurice Quentin de La Tour (Life time: 1788)",
+    "license": "Public domain"
+  },
+  "montesquieu": {
+    "src": "/portraits/montesquieu.webp",
+    "pageTitle": "Montesquieu",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Charles_Montesquieu.jpg",
+    "author": "After Jacques-Antoine Dassier",
+    "license": "Public domain"
+  },
+  "voltaire": {
+    "src": "/portraits/voltaire.webp",
+    "pageTitle": "Voltaire",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_(1694-1778)_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_(cropped).jpg",
+    "author": "Nicolas de Largillière",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "kant": {
+    "src": "/portraits/kant.webp",
+    "pageTitle": "Immanuel Kant",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Immanuel_Kant_-_Gemaelde_1.jpg",
+    "author": "Johann Gottlieb Becker (1720-1782)",
+    "license": "Public domain"
+  },
+  "fichte": {
+    "src": "/portraits/fichte.webp",
+    "pageTitle": "Johann Gottlieb Fichte",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johann_Gottlieb_Fichte.jpg",
+    "license": "Public domain"
+  },
+  "schelling": {
+    "src": "/portraits/schelling.webp",
+    "pageTitle": "Friedrich Wilhelm Joseph Schelling",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nb_pinacoteca_stieler_friedrich_wilhelm_joseph_von_schelling.jpg",
+    "author": "Joseph Karl Stieler",
+    "license": "Public domain"
+  },
+  "hegel": {
+    "src": "/portraits/hegel.webp",
+    "pageTitle": "Georg Wilhelm Friedrich Hegel",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jakob_Schlesinger_-_Hegel_1831.jpg",
+    "author": "Jakob Schlesinger",
+    "license": "Public domain"
+  },
+  "herder": {
+    "src": "/portraits/herder.webp",
+    "pageTitle": "Johann Gottfried Herder",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johann_Gottfried_Herder_2.jpg",
+    "author": "Anton Graff",
+    "license": "Public domain"
+  },
+  "bentham": {
+    "src": "/portraits/bentham.webp",
+    "pageTitle": "Jeremy Bentham",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jeremy_Bentham_by_Henry_William_Pickersgill.jpg",
+    "author": "Henry William Pickersgill",
+    "license": "Public domain"
+  },
+  "mill": {
+    "src": "/portraits/mill.webp",
+    "pageTitle": "John Stuart Mill",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Stuart_Mill_by_London_Stereoscopic_Company,_c1870.jpg",
+    "author": "London Stereoscopic Company",
+    "license": "Public domain"
+  },
+  "sidgwick": {
+    "src": "/portraits/sidgwick.webp",
+    "pageTitle": "Henry Sidgwick",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Henry_Sidgwick_Elliott_%26_Fry_1890s_(cropped).jpg",
+    "author": "Elliott & Fry",
+    "license": "Public domain"
+  },
+  "singer": {
+    "src": "/portraits/singer.webp",
+    "pageTitle": "Peter Singer",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peter_Singer_2017_(cropped).jpg",
+    "author": "Ula Zarosa",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  "parfit": {
+    "src": "/portraits/parfit.webp",
+    "pageTitle": "Derek Parfit",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Derek_Parfit_at_Harvard-April_21,_2015-Effective_Altruism_(cropped).jpg",
+    "author": "Anna Riedl",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "marx": {
+    "src": "/portraits/marx.webp",
+    "pageTitle": "Karl Marx",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored.png",
+    "author": "John Jabez Edwin Mayall",
+    "license": "Public domain"
+  },
+  "engels": {
+    "src": "/portraits/engels.webp",
+    "pageTitle": "Friedrich Engels",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Friedrich_Engels_portrait_(cropped).jpg",
+    "author": "William Hall (1826–ca. 1898) (cropped and sepia tone removed)",
+    "license": "Public domain"
+  },
+  "gramsci": {
+    "src": "/portraits/gramsci.webp",
+    "pageTitle": "Antonio Gramsci",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gramsci.png",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "adorno": {
+    "src": "/portraits/adorno.webp",
+    "pageTitle": "Theodor W. Adorno",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Theodor_W._Adorno.jpg",
+    "author": "Jeremy J. Shapiro",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "marcuse": {
+    "src": "/portraits/marcuse.webp",
+    "pageTitle": "Herbert Marcuse",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Herbert_Marcuse_in_Newton,_Massachusetts_1955_(cropped).jpg",
+    "author": "Copyright holder: Marcuse family, represented by Harold Marcuse",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "kierkegaard": {
+    "src": "/portraits/kierkegaard.webp",
+    "pageTitle": "Søren Kierkegaard",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:S%C3%B8ren_Kierkegaard_(1813-1855)_-_(cropped).jpg",
+    "author": "La Biblioteca Real de Dinamarca",
+    "license": "Public domain"
+  },
+  "nietzsche": {
+    "src": "/portraits/nietzsche.webp",
+    "pageTitle": "Friedrich Nietzsche",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nietzsche187a.jpg",
+    "author": "Friedrich Hermann Hartmann",
+    "license": "Public domain"
+  },
+  "heidegger": {
+    "src": "/portraits/heidegger.webp",
+    "pageTitle": "Martin Heidegger",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Freiburg,_Z%C3%A4hringen-_Jahnhalle,_Prof._Martin_Heidegger_w%C3%A4hrend_eines_Vortrags_-_LABW_-_Staatsarchiv_Freiburg_W_134_Nr._023740f_(cropped).jpeg",
+    "author": "Willy Pragher",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "sartre": {
+    "src": "/portraits/sartre.webp",
+    "pageTitle": "Jean-Paul Sartre",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jean_Paul_Sartre_1965.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "CC BY-SA 3.0 nl",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/nl/deed.en"
+  },
+  "beauvoir": {
+    "src": "/portraits/beauvoir.webp",
+    "pageTitle": "Simone de Beauvoir",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Simone_De_Beauvoir_(cropped).jpg",
+    "author": "Moshe Milner",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "husserl": {
+    "src": "/portraits/husserl.webp",
+    "pageTitle": "Edmund Husserl",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edmund_Husserl_1910s.jpg",
+    "author": "Unknown (Mondadori Publishers)",
+    "license": "Public domain"
+  },
+  "levinas": {
+    "src": "/portraits/levinas.webp",
+    "pageTitle": "Emmanuel Levinas",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Emmanuel_Levinas.jpg",
+    "author": "Bracha L. Ettinger",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  "merleau-ponty": {
+    "src": "/portraits/merleau-ponty.webp",
+    "pageTitle": "Maurice Merleau-Ponty",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maurice_Merleau-Ponty.jpg",
+    "author": "http://www.philosophical-investigations.org/Users/PerigGouanvic",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "gadamer": {
+    "src": "/portraits/gadamer.webp",
+    "pageTitle": "Hans-Georg Gadamer",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hans-Georg_Gadamer.jpg",
+    "author": "Leena Ruuskanen",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "camus": {
+    "src": "/portraits/camus.webp",
+    "pageTitle": "Albert Camus",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Albert_Camus,_gagnant_de_prix_Nobel,_portrait_en_buste,_pos%C3%A9_au_bureau,_faisant_face_%C3%A0_gauche,_cigarette_de_tabagisme.jpg",
+    "author": "Photograph by United Press International",
+    "license": "Public domain"
+  },
+  "dostoevsky": {
+    "src": "/portraits/dostoevsky.webp",
+    "pageTitle": "Fyodor Dostoevsky",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vasily_Perov_-_%D0%9F%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82_%D0%A4.%D0%9C.%D0%94%D0%BE%D1%81%D1%82%D0%BE%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_-_Google_Art_Project.jpg",
+    "author": "Vasily Perov",
+    "license": "Public domain"
+  },
+  "kafka": {
+    "src": "/portraits/kafka.webp",
+    "pageTitle": "Franz Kafka",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Franz_Kafka,_1923.jpg",
+    "author": "Unknown photographer",
+    "license": "Public domain"
+  },
+  "peirce": {
+    "src": "/portraits/peirce.webp",
+    "pageTitle": "Charles Sanders Peirce",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Charles_Sanders_Peirce.png",
+    "author": "Charles_Sanders_Peirce_theb3558.jpg : NOAA Office of NOAA Corps Operations derivative work: Ori.livneh ( talk )",
+    "license": "Public domain"
+  },
+  "james": {
+    "src": "/portraits/james.webp",
+    "pageTitle": "William James",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:William_James_b1842c.jpg",
+    "author": "Notman Studios (photographer)",
+    "license": "Public domain"
+  },
+  "dewey": {
+    "src": "/portraits/dewey.webp",
+    "pageTitle": "John Dewey",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Dewey_cph.3a51565.jpg",
+    "author": "Underwood & Underwood",
+    "license": "Public domain"
+  },
+  "mead": {
+    "src": "/portraits/mead.webp",
+    "pageTitle": "George Herbert Mead",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:George_Herbert_Mead.jpg",
+    "license": "Public domain"
+  },
+  "rorty": {
+    "src": "/portraits/rorty.webp",
+    "pageTitle": "Richard Rorty",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Richard_Rorty_in_1959.png",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "frege": {
+    "src": "/portraits/frege.webp",
+    "pageTitle": "Gottlob Frege",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Young_frege.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "russell": {
+    "src": "/portraits/russell.webp",
+    "pageTitle": "Bertrand Russell",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bertrand_Russell_in_1936.jpg",
+    "author": "Bassano Ltd",
+    "license": "Public domain"
+  },
+  "moore": {
+    "src": "/portraits/moore.webp",
+    "pageTitle": "G. E. Moore",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:1914_George_Edward_Moore_(cropped).jpg",
+    "author": "Ray Strachey, born Rachel Pearsall Conn Costelloe (4 June 1887 London – 16 July 1940)",
+    "license": "Public domain"
+  },
+  "wittgenstein": {
+    "src": "/portraits/wittgenstein.webp",
+    "pageTitle": "Ludwig Wittgenstein",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ludwig_Wittgenstein_1929.jpg",
+    "author": "Moritz Nähr",
+    "license": "Public domain"
+  },
+  "quine": {
+    "src": "/portraits/quine.webp",
+    "pageTitle": "Willard Van Orman Quine",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Willard_Van_Orman_Quine_on_Bluenose_II_in_Halifax_NS_harbor_1980.jpg",
+    "author": "Maryclaire Quine",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "kripke": {
+    "src": "/portraits/kripke.webp",
+    "pageTitle": "Saul Kripke",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kripke.JPG",
+    "author": "Oursipan",
+    "license": "Public domain"
+  },
+  "putnam": {
+    "src": "/portraits/putnam.webp",
+    "pageTitle": "Hilary Putnam",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hilary_Putnam.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  "dennett": {
+    "src": "/portraits/dennett.webp",
+    "pageTitle": "Daniel Dennett",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Daniel_Dennett_2.jpg",
+    "author": "Dmitry Rozhkov",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "popper": {
+    "src": "/portraits/popper.webp",
+    "pageTitle": "Karl Popper",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Karl_Popper.jpg",
+    "author": "Franz Barta",
+    "license": "No restrictions",
+    "licenseUrl": "https://www.flickr.com/commons/usage/"
+  },
+  "kuhn": {
+    "src": "/portraits/kuhn.webp",
+    "pageTitle": "Thomas Kuhn",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thomas_Kuhn_(1977)_(cropped).jpg",
+    "author": "Bob Bielk",
+    "license": "Public domain"
+  },
+  "lakatos": {
+    "src": "/portraits/lakatos.webp",
+    "pageTitle": "Imre Lakatos",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Professor_Imre_Lakatos,_c1960s.jpg",
+    "license": "No restrictions",
+    "licenseUrl": "https://www.flickr.com/commons/usage/"
+  },
+  "feyerabend": {
+    "src": "/portraits/feyerabend.webp",
+    "pageTitle": "Paul Feyerabend",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paul_Feyerabend_Berkeley.jpg",
+    "author": "Grazia Borrini-Feyerabend",
+    "license": "Attribution"
+  },
+  "ross": {
+    "src": "/portraits/ross.webp",
+    "pageTitle": "W. D. Ross",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:W-D-Ross.jpg",
+    "author": "Writersfinger",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "korsgaard": {
+    "src": "/portraits/korsgaard.webp",
+    "pageTitle": "Christine Korsgaard",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christine_Korsgaard_at_Amherst_College_2.jpg",
+    "author": "Rose Lenehan",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "oneill": {
+    "src": "/portraits/oneill.webp",
+    "pageTitle": "Onora O'Neill",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Official_portrait_of_Baroness_O%27Neill_of_Bengarve_crop_2.jpg",
+    "author": "Roger Harris",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "confucius": {
+    "src": "/portraits/confucius.webp",
+    "pageTitle": "Confucius",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Confucius,_fresco_from_a_Western_Han_tomb_of_Dongping_County,_Shandong_province,_China_(cropped).jpg",
+    "author": "Anonymous Chinese painter of the Western Han period",
+    "license": "Public domain"
+  },
+  "macintyre": {
+    "src": "/portraits/macintyre.webp",
+    "pageTitle": "Alasdair MacIntyre",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alasdair_MacIntyre.jpg",
+    "author": "Sean O'Connor",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  "gilligan": {
+    "src": "/portraits/gilligan.webp",
+    "pageTitle": "Carol Gilligan",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carol_Gilligan_P1010970_-_cropped.jpg",
+    "author": "Deror avi ; cropped by User:Ravit",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "noddings": {
+    "src": "/portraits/noddings.webp",
+    "pageTitle": "Nel Noddings",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nel_Noddings_2011_(cropped).jpg",
+    "author": "Jim Noddings, Nel Noddings' husband",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "tronto": {
+    "src": "/portraits/tronto.webp",
+    "pageTitle": "Joan Tronto",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Joan_Tronto_on_Zorg_Ethiek.jpg",
+    "author": "Zorgethiek",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "held": {
+    "src": "/portraits/held.webp",
+    "pageTitle": "Virginia Held",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Virginia_Held_at_2013_Mellon_Sawyer_Seminar.jpg",
+    "author": "GC Mellon Sawyer",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "wollstonecraft": {
+    "src": "/portraits/wollstonecraft.webp",
+    "pageTitle": "Mary Wollstonecraft",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mary_Wollstonecraft_Portrait.jpg",
+    "author": "John Opie",
+    "license": "Public domain"
+  },
+  "taylor-mill": {
+    "src": "/portraits/taylor-mill.webp",
+    "pageTitle": "Harriet Taylor Mill",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Harriet_Mill_from_NPG.jpg",
+    "author": "anonymous",
+    "license": "Public domain"
+  },
+  "lugones": {
+    "src": "/portraits/lugones.webp",
+    "pageTitle": "Maria Lugones",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Retrato_de_Mar%C3%ADa_Lugones.jpg",
+    "author": "Revista Lavaca",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "bell-hooks": {
+    "src": "/portraits/bell-hooks.webp",
+    "pageTitle": "Bell hooks",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bell_hooks,_October_2014.jpg",
+    "author": "Alex Lozupone (Tduk)",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "rawls": {
+    "src": "/portraits/rawls.webp",
+    "pageTitle": "John Rawls",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Rawls_(1971_photo_portrait).jpg",
+    "author": "Published by the Belknap Press of Harvard University Press . Photograph taken by Alec Rawls, John's son. The portrait was uncredited on the original dust jacket, but Alec is identified as its photographer on the copyright page of the 1994 German-language first edition of the book John Rawls by Thomas Pogge .",
+    "license": "Public domain"
+  },
+  "arendt": {
+    "src": "/portraits/arendt.webp",
+    "pageTitle": "Hannah Arendt",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hannah_Arendt_auf_dem_1._Kulturkritikerkongress,_Barbara_Niggl_Radloff,_FM-2019-1-5-9-16_(cropped).jpg",
+    "author": "Barbara Niggl Radloff",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "ptahhotep": {
+    "src": "/portraits/ptahhotep.webp",
+    "pageTitle": "Ptahhotep",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Statuevizir095.jpg",
+    "author": "Kurohito",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "zera-yacob": {
+    "src": "/portraits/zera-yacob.webp",
+    "pageTitle": "Zara Yaqob",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zara_Yacob.png",
+    "author": "Unknown painter 17th century",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "amo": {
+    "src": "/portraits/amo.webp",
+    "pageTitle": "Anton Wilhelm Amo",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anton_Wilhelm_Amo_(c._1703_%E2%80%93_c._1759)_-_Dissertatio_inauguralis_philosophica_de_humanae_mentis_apatheia,_Wittenberg,_1734,_title_page.jpg",
+    "author": "Antonius Guglielmus Amo (c. 1703 – c. 1759)",
+    "license": "Public domain"
+  },
+  "fanon": {
+    "src": "/portraits/fanon.webp",
+    "pageTitle": "Frantz Fanon",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Photograph_of_Frantz_Fanon_from_Black_Skin_White_Masks_(1967)_dust_jacket.webp",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "tutu": {
+    "src": "/portraits/tutu.webp",
+    "pageTitle": "Desmond Tutu",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Archbishop-Tutu-medium.jpg",
+    "author": "Benny Gool",
+    "license": "Public domain"
+  },
+  "dussel": {
+    "src": "/portraits/dussel.webp",
+    "pageTitle": "Enrique Dussel",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:EnriqueDussel.jpg",
+    "author": "Ralg23",
+    "license": "Public domain"
+  },
+  "freire": {
+    "src": "/portraits/freire.webp",
+    "pageTitle": "Paulo Freire",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Paulo_Freire_1977_(cropped).jpg",
+    "author": "Slobodan Dimitrov",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "mariategui": {
+    "src": "/portraits/mariategui.webp",
+    "pageTitle": "José Carlos Mariátegui",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jos%C3%A9_Carlos_Mari%C3%A1tegui_in_1929.jpg",
+    "author": "José Malanca",
+    "license": "Public domain"
+  },
+  "anzaldua": {
+    "src": "/portraits/anzaldua.webp",
+    "pageTitle": "Gloria Anzaldúa",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gloria_Anzaldua.jpg",
+    "author": "K. Kendall",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  "mignolo": {
+    "src": "/portraits/mignolo.webp",
+    "pageTitle": "Walter Mignolo",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Walter_Mignolo_en_2019.png",
+    "author": "სოციალური სამართლიანობის ცენტრი",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+  },
+  "tuhiwai-smith": {
+    "src": "/portraits/tuhiwai-smith.webp",
+    "pageTitle": "Linda Tuhiwai Smith",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Linda_Tuhiwai_Smith_Royal_Society_Wellington_2023_(cropped).jpg",
+    "author": "Royal Society Te Apārangi",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "mencius": {
+    "src": "/portraits/mencius.webp",
+    "pageTitle": "Mencius",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Half_Portraits_of_the_Great_Sage_and_Virtuous_Men_of_Old_-_Meng_Ke_(%E5%AD%9F%E8%BB%BB).jpg",
+    "author": "anonymous",
+    "license": "Public domain"
+  },
+  "zhu-xi": {
+    "src": "/portraits/zhu-xi.webp",
+    "pageTitle": "Zhu Xi",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E5%94%AF%E4%B8%80%E5%8F%AF%E9%9D%A0%E7%9A%84%E6%9C%B1%E7%86%B9%E7%94%BB%E5%83%8F.jpg",
+    "author": "向史公哲曰",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "wang-yangming": {
+    "src": "/portraits/wang-yangming.webp",
+    "pageTitle": "Wang Yangming",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E7%8E%8B%E5%AE%88%E4%BB%81.jpg",
+    "author": "Shen Junhui (沈俊繪)",
+    "license": "Public domain"
+  },
+  "laozi": {
+    "src": "/portraits/laozi.webp",
+    "pageTitle": "Laozi",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Laozi_(Chinese_characters).svg",
+    "author": "White whirlwind",
+    "license": "Public domain"
+  },
+  "liezi": {
+    "src": "/portraits/liezi.webp",
+    "pageTitle": "Liezi",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brooklyn_Museum_-_Calligraphy_Lieh_Tzu_Yang-chu_Chapter_-_Kojima_Soshin.jpg",
+    "author": "Kojima Soshin; Ogata Soken, Japanese",
+    "license": "Public domain"
+  },
+  "wang-bi": {
+    "src": "/portraits/wang-bi.webp",
+    "pageTitle": "Wang Bi",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E8%87%B3%E8%81%96%E5%85%88%E8%B3%A2%E5%8D%8A%E8%BA%AB%E5%83%8F_%E5%86%8A-107-%E7%8E%8B%E5%BC%BC.jpg",
+    "author": "Anonymous Unknown author",
+    "license": "Public domain"
+  },
+  "guo-xiang": {
+    "src": "/portraits/guo-xiang.webp",
+    "pageTitle": "Guo Xiang",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Guo_Xiang_Mask.jpg",
+    "author": "emmmmer/livejournal",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "mozi": {
+    "src": "/portraits/mozi.webp",
+    "pageTitle": "Mozi",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:%D0%A4%D0%B8%D0%BB%D0%BE%D1%81%D0%BE%D1%84_%D0%9C%D0%BE-%D0%A6%D0%B7%D1%8B.jpg",
+    "author": "Vjacheslav Rublevskiy",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "han-feizi": {
+    "src": "/portraits/han-feizi.webp",
+    "pageTitle": "Han Feizi",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hanfeizi_or_Han_Feizi,_Qing_dynasty,_Hunan_Museum.jpg",
+    "author": "Huangdan2060",
+    "license": "Public domain"
+  },
+  "shang-yang": {
+    "src": "/portraits/shang-yang.webp",
+    "pageTitle": "Shang Yang",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Statue_of_Shang_Yang.jpg",
+    "author": "Taken by Fanghong",
+    "license": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5"
+  },
+  "gaudapada": {
+    "src": "/portraits/gaudapada.webp",
+    "pageTitle": "Gaudapada",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shri_Gaudapadacharya_Statue.jpg",
+    "author": "Ashok Prabhu",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "shankara": {
+    "src": "/portraits/shankara.webp",
+    "pageTitle": "Adi Shankara",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Raja_Ravi_Varma_-_Sankaracharya.jpg",
+    "author": "Raja Ravi Varma",
+    "license": "Public domain"
+  },
+  "ramanuja": {
+    "src": "/portraits/ramanuja.webp",
+    "pageTitle": "Ramanuja",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shri_Ramanujar_pics_2.jpg",
+    "author": "Todayindian",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "madhva": {
+    "src": "/portraits/madhva.webp",
+    "pageTitle": "Madhvacharya",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shri_Madhvacharya_Vigraha,_Pajaka,_Udupi.jpg",
+    "author": "AR767",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "buddha": {
+    "src": "/portraits/buddha.webp",
+    "pageTitle": "The Buddha",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buddha_in_Sarnath_Museum_(Dhammajak_Mutra).jpg",
+    "author": "พระมหาเทวประภาส วชิรญาณเมธี (ผู้ถ่าย-ปล่อยสัญญาอนุญาตภาพให้นำไปใช้ได้เพื่อการศึกษาโดยอยู่ภา่ยใต้ cc-by-sa-3.0) ผู้สร้างสรรค์ผลงาน/ส่งข้อมูลเก็บในคลังข้อมูลเสรีวิกิมีเดียคอมมอนส์ - เทวประภาส มากคล้าย",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "nagarjuna": {
+    "src": "/portraits/nagarjuna.webp",
+    "pageTitle": "Nagarjuna",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nagarjuna_with_84_mahasiddha_cropped.jpg",
+    "author": "Unknown | Recovered from Himalayan Art Resources",
+    "license": "Public domain"
+  },
+  "vasubandhu": {
+    "src": "/portraits/vasubandhu.webp",
+    "pageTitle": "Vasubandhu",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vasubandhu.png",
+    "author": "Shouyi 首一",
+    "license": "Public domain"
+  },
+  "dharmakirti": {
+    "src": "/portraits/dharmakirti.webp",
+    "pageTitle": "Dharmakirti",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tibet,_c._15th-16th_century_-_Portrait_of_Dharmakirti_-_2010.474_-_Cleveland_Museum_of_Art.tif",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  "shantideva": {
+    "src": "/portraits/shantideva.webp",
+    "pageTitle": "Shantideva",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shantideva.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "patanjali": {
+    "src": "/portraits/patanjali.webp",
+    "pageTitle": "Patanjali",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Patanjali.jpg",
+    "author": "en:Rpba",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "aksapada-gautama": {
+    "src": "/portraits/aksapada-gautama.webp",
+    "pageTitle": "Nyāya Sūtras",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:4_Pramanas,_epistemology_according_to_ancient_Nyayasutras.svg",
+    "author": "Ms Sarah Welch",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "mahavira": {
+    "src": "/portraits/mahavira.webp",
+    "pageTitle": "Mahavira",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mahavir.jpg",
+    "author": "Dayodaya",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  "kundakunda": {
+    "src": "/portraits/kundakunda.webp",
+    "pageTitle": "Kundakunda",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Acharya_KundaKunda.jpg",
+    "author": "Jain cloud",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "dogen": {
+    "src": "/portraits/dogen.webp",
+    "pageTitle": "Dōgen",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Soto-Zen-Master-Dogen-Zenji-Portrait.png",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "hakuin": {
+    "src": "/portraits/hakuin.webp",
+    "pageTitle": "Hakuin Ekaku",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zen-Master-Hakuin-Ekaku-Self-Portrait-1767.png",
+    "author": "Hakuin Ekaku (self-portrait)",
+    "license": "Public domain"
+  },
+  "nishida": {
+    "src": "/portraits/nishida.webp",
+    "pageTitle": "Kitarō Nishida",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait-of-Kitaro-Nishida.png",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "tanabe": {
+    "src": "/portraits/tanabe.webp",
+    "pageTitle": "Hajime Tanabe",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tanabe_Hajime.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "nishitani": {
+    "src": "/portraits/nishitani.webp",
+    "pageTitle": "Keiji Nishitani",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nisitani_keiji.jpg",
+    "author": "AleksandrGertsen",
+    "license": "Public domain"
+  },
+  "kenko": {
+    "src": "/portraits/kenko.webp",
+    "pageTitle": "Yoshida Kenkō",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Yoshida_Kenko.jpg",
+    "license": "Public domain"
+  },
+  "chomei": {
+    "src": "/portraits/chomei.webp",
+    "pageTitle": "Kamo no Chōmei",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kamo_no_Chomei.jpg",
+    "license": "Public domain"
+  },
+  "kukai": {
+    "src": "/portraits/kukai.webp",
+    "pageTitle": "Kūkai",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Eight_Patriarchs_of_the_Shingon_Sect_of_Buddhism_Kukai_Cropped.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+  },
+  "schiller": {
+    "src": "/portraits/schiller.webp",
+    "pageTitle": "Friedrich Schiller",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Friedrich_Schiller_by_Ludovike_Simanowiz.jpg",
+    "author": "Ludovike Simanowiz",
+    "license": "Public domain"
+  },
+  "huizinga": {
+    "src": "/portraits/huizinga.webp",
+    "pageTitle": "Johan Huizinga",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Johan-huizinga1.jpg",
+    "author": "Unknown photographer",
+    "license": "Public domain"
+  },
+  "schopenhauer": {
+    "src": "/portraits/schopenhauer.webp",
+    "pageTitle": "Arthur Schopenhauer",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arthur_Schopenhauer_by_J_Sch%C3%A4fer,_1859b.jpg",
+    "author": "Johann Schäfer",
+    "license": "Public domain"
+  },
+  "weil": {
+    "src": "/portraits/weil.webp",
+    "pageTitle": "Simone Weil",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Simone_Weil_1943.jpg",
+    "author": "Unknown",
+    "license": "Public domain"
+  },
+  "thoreau": {
+    "src": "/portraits/thoreau.webp",
+    "pageTitle": "Henry David Thoreau",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Benjamin_D._Maxham_-_Henry_David_Thoreau_-_Restored.jpg",
+    "author": "Benjamin D. Maxham active 1848 - 1858",
+    "license": "Public domain"
+  },
+  "leopold": {
+    "src": "/portraits/leopold.webp",
+    "pageTitle": "Aldo Leopold",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aldo_Leopold,_1946_(cropped).jpg",
+    "author": "Howard Zahniser",
+    "license": "Public domain"
+  },
+  "naess": {
+    "src": "/portraits/naess.webp",
+    "pageTitle": "Arne Næss",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arne_N%C3%A6ss,_2003_(cropped)_(cropped).jpg",
+    "author": "Vindheim",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "plumwood": {
+    "src": "/portraits/plumwood.webp",
+    "pageTitle": "Val Plumwood",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Val_Plumwood_(1990,_cropped).jpg",
+    "author": "Sean Kenan ; cropped and mark removed by SarahSV",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "xunzi": {
+    "src": "/portraits/xunzi.webp",
+    "pageTitle": "Xunzi (philosopher)",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait_of_Xun_Zi.jpg",
+    "author": "Unknown author Unknown author",
+    "license": "Public domain"
+  },
+  "zhuangzi": {
+    "src": "/portraits/zhuangzi.webp",
+    "pageTitle": "Zhuang Zhou",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E7%8E%84%E9%96%80%E5%8D%81%E5%AD%90%E5%9C%96_%E8%8E%8A%E5%AD%90.jpg",
+    "author": "Hua Zili (華祖立)",
+    "license": "Public domain"
+  },
+  "rolston": {
+    "src": "/portraits/rolston.webp",
+    "pageTitle": "Holmes Rolston III",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holmes_Rolston_III.jpg",
+    "author": "David Keller",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  "austin": {
+    "src": "/portraits/austin.webp",
+    "pageTitle": "J. L. Austin",
+    "sourceUrl": "https://www.britannica.com/biography/J-L-Austin",
+    "license": "Unknown (web image)"
+  },
+  "ryle": {
+    "src": "/portraits/ryle.webp",
+    "pageTitle": "Gilbert Ryle",
+    "sourceUrl": "https://gtmarket.ru/library/basis/3298",
+    "license": "Unknown (web image)"
+  },
+  "davidson": {
+    "src": "/portraits/davidson.webp",
+    "pageTitle": "Donald Davidson",
+    "sourceUrl": "https://gtmarket.ru/library/articles/1696",
+    "license": "Unknown (web image)"
+  },
+  "anscombe": {
+    "src": "/portraits/anscombe.webp",
+    "pageTitle": "G. E. M. Anscombe",
+    "sourceUrl": "https://www.nytimes.com/2011/01/08/us/08beliefs.html",
+    "license": "Unknown (web image)"
+  },
+  "kittay": {
+    "src": "/portraits/kittay.webp",
+    "pageTitle": "Eva Feder Kittay",
+    "sourceUrl": "https://www.apaonline.org/general/custom.asp?page=lebowitz",
+    "license": "Unknown (web image)"
+  },
+  "gyekye": {
+    "src": "/portraits/gyekye.webp",
+    "pageTitle": "Kwame Gyekye",
+    "sourceUrl": "https://africafeeds.com/2019/04/30/opinion-a-tribute-to-emeritus-prof-kwame-gyekye/",
+    "license": "Unknown (web image)"
+  },
+  "mbiti": {
+    "src": "/portraits/mbiti.webp",
+    "pageTitle": "John Mbiti",
+    "sourceUrl": "https://religionunplugged.com/news/2019/10/12/mourning-the-death-of-john-samuel-mbiti-father-of-modern-african-theology",
+    "license": "Unknown (web image)"
+  },
+  "menkiti": {
+    "src": "/portraits/menkiti.webp",
+    "pageTitle": "Ifeanyi Menkiti",
+    "sourceUrl": "https://www.flickr.com/photos/cambridgeroom/35321452631/",
+    "license": "Unknown (Flickr image)"
+  },
+  "ramose": {
+    "src": "/portraits/ramose.webp",
+    "pageTitle": "Mogobe Ramose",
+    "sourceUrl": "https://www.youtube.com/watch?v=FPFqBPs3t1o",
+    "license": "Unknown (web image)"
+  },
+  "deloria": {
+    "src": "/portraits/deloria.webp",
+    "pageTitle": "Vine Deloria Jr.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Vine_Deloria_Jr.",
+    "license": "Non-free (Wikipedia)"
+  },
+  "simpson": {
+    "src": "/portraits/simpson.webp",
+    "pageTitle": "Leanne Betasamosake Simpson",
+    "sourceUrl": "https://www.theglobeandmail.com/arts/books-and-media/nominees-for-the-rogers-writers-trust-fiction-prize-discuss-their-storytellingprocesses/article36921252/",
+    "license": "Unknown (web image)"
+  },
+  "ermine": {
+    "src": "/portraits/ermine.webp",
+    "pageTitle": "Willie Ermine",
+    "sourceUrl": "https://www.design.iastate.edu/news/willie-ermine-elwood-lecture/",
+    "license": "Unknown (university photo)"
+  },
+  "alfred": {
+    "src": "/portraits/alfred.webp",
+    "pageTitle": "Taiaiake Alfred",
+    "sourceUrl": "https://www.pinterest.com/pin/mohawk-warrior-taiaiake-alfred-on-native-resurgence--764274999245358840/",
+    "license": "Unknown (web image)"
+  },
+  "li-si": {
+    "src": "/portraits/li-si.webp",
+    "pageTitle": "Li Si",
+    "sourceUrl": "https://www.pinterest.com/pin/li-si-qin-dynasty-epic--836473330788510964/",
+    "license": "Unknown (web image)",
+    "note": "Modern dramatic depiction"
+  },
+  "shen-buhai": {
+    "src": "/portraits/shen-buhai.webp",
+    "pageTitle": "Shen Buhai",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Statue_Of_Han_Fei.png",
+    "author": "Sabinowitz",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "note": "Representative Legalist image; no contemporary portrait survives"
+  },
+  "badarayana": {
+    "src": "/portraits/badarayana.webp",
+    "pageTitle": "Badarayana",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vyasa-naimisharanya.jpg",
+    "author": "Tantrik71",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "note": "Vyasa, traditionally identified with Badarayana"
+  },
+  "ishvarakrishna": {
+    "src": "/portraits/ishvarakrishna.webp",
+    "pageTitle": "Ishvarakrishna",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kapila_(cropped).png",
+    "license": "Public domain",
+    "note": "Representative Samkhya image; no contemporary portrait survives"
+  },
+  "zeami": {
+    "src": "/portraits/zeami.webp",
+    "pageTitle": "Zeami Motokiyo",
+    "sourceUrl": "https://biographs.org/motokiyo-zeami",
+    "license": "Unknown (web image)"
+  },
+  "suits": {
+    "src": "/portraits/suits.webp",
+    "pageTitle": "Bernard Suits",
+    "sourceUrl": "https://uwaterloo.ca/philosophy/bernard-suits",
+    "license": "Unknown (university portrait)"
+  },
+  "foot": {
+    "src": "/portraits/foot.webp",
+    "pageTitle": "Philippa Foot",
+    "sourceUrl": "https://uk.wikipedia.org/wiki/Файл:Philippa_Foot.jpg",
+    "license": "Unknown (Wikipedia file)"
+  }
+}
