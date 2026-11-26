@@ -2939,6 +2939,11 @@ main {
   background: var(--paper-deep);
 }
 
+.portrait-xs {
+  width: 22px;
+  height: 22px;
+}
+
 .portrait-sm {
   width: 34px;
   height: 34px;
@@ -3644,19 +3649,36 @@ main {
 
 .is-simone .msg-bubble {
   border-bottom-left-radius: 5px;
+  border: 1px solid #1f5a34;
+  background: #12351f;
+  color: #c9fdd3;
 }
 
 .quote-bubble {
   max-width: 88%;
   padding: 10px 12px 11px;
-  background: #1c1c1e;
 }
 
 .quote-preface {
-  margin: 0 0 5px;
-  color: #8e8e93;
-  font-size: 12.5px;
-  line-height: 1.35;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 6px;
+  color: inherit;
+  font-size: 15px;
+  line-height: 1.38;
+}
+
+.quote-preface .portrait {
+  margin-top: 1px;
+  border-color: #2b6b45;
+}
+
+.quote-name-line {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: 1.38;
 }
 
 .contact-name {
@@ -3676,15 +3698,15 @@ main {
 
 .quote-text {
   margin: 0;
-  color: #f2f2f7;
+  color: inherit;
   font-size: 15px;
-  line-height: 1.45;
+  line-height: 1.38;
 }
 
 .green-bubble {
-  border: 1px solid #1f5a34;
+  border-color: #1f5a34;
   background: #12351f;
-  color: #b6f7c2;
+  color: #c9fdd3;
 }
 
 .typing-bubble {
@@ -3698,7 +3720,7 @@ main {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #8e8e93;
+  background: #9be8ad;
   animation: phone-typing 1.2s infinite ease-in-out;
 }
 

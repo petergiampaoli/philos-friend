@@ -2,11 +2,11 @@
 
 A philosophy advice bot for the question you would only ask a friend at 1 a.m.
 
-Ask something like **“Why do I need to win to have fun?”** and Philos-Friend answers with **three philosophers, one quote at a time**. Reject a quote with **“That’s not it”**; after all three, add the detail the quotes missed and the next set is selected from the old question plus the new detail.
+Ask something like **“Why do I need to win to have fun?”** and Philos-Friend is a simulated phone conversation with Simone. The first reply is a verified quote and a green line. Reject it with **“That’s not it.”** and the next philosopher is generated on demand; after three quotes, **“Let me ask you something else.”** invites a new question.
 
-Every quotation is rendered from the library by ID; the model never writes the quote text.
+Every quotation is rendered from the library by ID; the model never writes the quote text. Each quote pair carries the source-backed reading notes behind it.
 
-The demo path is fully deterministic. Add an LLM key and the same retrieved packet is rewritten by a live model, with the same source checks.
+The demo path is fully deterministic. Add an LLM key and the same ranked quote is rewritten by a live model, with the same source checks.
 
 ## Quick start
 
@@ -19,12 +19,12 @@ npm run dev
 
 No API key is required. Without one, the app runs in **demo mode**:
 
-- the flagship question gets a hand-authored set of three quotes;
-- other questions use a template composition assembled from the retrieved packet;
-- the quote cycle, library, profiles, and share pages all work.
+- the flagship question gets a deterministic first quote pair;
+- other questions use the ranked library quote plus a deterministic lens;
+- the phone conversation, library, profiles, and share pages all work.
 
 ```bash
-npm test            # 44 tests, including a 20-question golden set
+npm test            # 60 tests, including a 20-question golden set
 npm run typecheck
 npm run build
 npm run check:corpus
@@ -36,20 +36,20 @@ The web app is the first product. Discord is the next delivery surface, not a re
 
 What is in Phase 1:
 
-- **Dark, minimal interface.** Near-black paper, light serif quotes, one warm accent, no stats or navigation chrome.
-- **Quote-only conversation UI.** One quote at a time, **That’s not it →**, and an inline **Elaborate** form after the third quote.
-- **Previous-quote back button.** “← Maybe it was what you said earlier” returns to the previous quote; it is hidden on quote 1 and returns from the final prompt to quote 3.
-- **Inline reading notes.** Selecting the quote or the philosopher opens a panel beneath the quote with context, a quick breakdown, and the tailored explanation. It scrolls into view and closes back to the quote.
-- **Collapsible history.** Completed answer cards collapse when a new question is submitted; click the matching question bubble to reopen one.
-- **Local portraits.** All 187 thinkers have a locally stored, square-cropped WebP portrait under `public/portraits`, with sources listed on `/credits`. Twenty use web-search or representative images where Wikipedia has no free portrait; those are marked on the credits page.
-- **Copy link on every quote bubble.** The link is a shareable `/a/[id]` page with the same quote cycle.
-- **Conversation amalgam.** A new detail is read together with the earlier questions; the previous three philosophers are excluded so the next set is new.
+- **Dark phone conversation.** A simulated iPhone screen with a Simone contact header, running chat, decorative keyboard, and a generic silhouette avatar.
+- **One quote pair per request.** The first call generates one source-backed quote and one green line. **That’s not it.** generates the next unused thinker on demand. After three pairs, the rejection chip disappears.
+- **In-phone reading notes.** Every quote byline has the philosopher’s portrait and a blue name. Tapping the name opens a sidebar inside the phone with source, context, breakdown, and “What it means.”
+- **Running scrollback.** Every question, quote, green line, and suggested response stays in one scrollable conversation.
+- **One-line suggestions.** **That’s not it.** and **Let me ask you something else.** sit between the message bar and the keyboard. “Let me ask you something else.” is matched with Simone’s **“Okay, what’s up?”**
+- **Local portraits.** All 187 thinkers have a locally stored, square-cropped WebP portrait under `public/portraits`, with sources listed on `/credits`. Simone uses a neutral silhouette rather than a historical portrait.
+- **Share pages.** The link is a read-only phone conversation showing the pairs generated so far.
+- **Conversation amalgam.** A new detail is read together with the earlier questions; the previous thinkers are excluded so the next set is new.
 - **Rate limiting** on the ask endpoint. The default is 60 ask requests per IP per hour; override with `ADVISE_RATE_LIMIT`.
 - **Legal pages** at `/privacy` and `/terms`, linked from the footer.
-- **Local persistence** in `~/.philos-friend` by default, outside the repo so Next’s file watcher does not reload the page when an answer is saved. Override with `PHILOS_FRIEND_DATA_DIR`. Before a public multi-instance deployment, swap `lib/answers.ts` for Postgres or Redis.
+- **Local persistence** in `~/.philos-friend` by default, outside the repo so Next’s file watcher does not reload the page when a conversation is saved. Override with `PHILOS_FRIEND_DATA_DIR`. Before a public multi-instance deployment, swap `lib/conversation-store.ts` for Postgres or Redis.
 - **A health endpoint** at `/api/health` used by the dev launcher.
 
-The engine boundary is already Discord-ready: `advise()` returns a serializable `{ id, question, answer, packet, trace, mode }` object with no React or Next dependencies. A future Discord bot imports the same engine and renders the quote cycle as embeds/buttons; the share page is the link it sends back. The full structured answer is still stored and returned for that future surface, even though the web quote view hides it.
+The engine boundary is still Discord-ready: the older `advise()` function returns a serializable `{ id, question, answer, packet, trace, mode }` object with no React or Next dependencies. The phone uses the on-demand `startConversation` / `addConversationPair` pipeline. A future Discord bot can use either surface; the share page is the link it sends back.
 
 ## The library
 
@@ -74,28 +74,28 @@ conversation history + new detail
   → lineage routing (weighted by themes and direct mentions)
   → candidate scoring (lineage seat, theme tags, quotation, diversity)
   → a 16-thinker packet, preferring quoted candidates
-  → quote-first ranking within each thinker
-  → live writer (DeepSeek V4 Pro when configured)
-  → critic → revise if any score is weak
+  → quote-first ranking, then choose one unused verified quote
+  → one-lens writer (DeepSeek V4 Pro when configured)
   → dedicated green-line affirmation pass
-  → validation: known IDs, quote ownership, two traditions, no stray name-drops, non-judgment
-  → quote guarantee: three lenses with real verified quotations
-  → quote cycle
+  → validation: known IDs, quote ownership, word limits, non-judgment
+  → first phone pair: one quote + one green line
+  → "That's not it." → choose the next unused thinker/quote and repeat
 ```
 
-The API returns a trace for debugging and future surfaces. The web quote view deliberately hides the thesis, theory, synthesis, practice, and trace; the share page shows the same three quotes. The reading-notes panel reveals the quote-specific `claim`, `theory`, and `application`, plus a warm `affirmation`.
+The first request returns only one quote and one green line. Each tap on **That’s not it** generates the next pair on demand; after three pairs the rejection prompt disappears. The API returns per-stage timings and writes them to the server log and a `Server-Timing` header. The share page shows the pairs generated so far, read-only.
 
-When a follow-up is submitted, the server concatenates the earlier questions with the new detail for retrieval, includes them in the LLM prompt, and excludes the previous three thinkers. History is capped at the first question plus the last two follow-ups.
+The phone hides the longer thesis, synthesis, and practice fields; the reading-notes panel reveals the quote-specific `claim`, `theory`, and `application`, plus the warm `affirmation`.
+
+When a new question is submitted, the server concatenates the earlier questions with the new detail for retrieval, includes them in the LLM prompt, and excludes the previous thinkers. History is capped at the first question plus the last two follow-ups.
 
 ### Quote safety
 
 - A quotation is stored only with a work, a locator, and (where relevant) a translator.
-- The model returns a `quoteId`, never quote text. The browser looks the text up in the packet.
-- If the model assigns a quote to the wrong thinker, the validator rejects the answer.
-- If the model mentions a philosopher who is not in the packet, the validator rejects the answer.
-- If validation fails once, the app asks for a repair; if it still fails, it falls back to the deterministic composer.
-- If the model selects a thinker without a verified quotation, the server swaps in the next-best quoted candidate. It never invents a quote.
-- The quote-only surface is guaranteed three quoted lenses when the packet has three quoted candidates.
+- The phone flow chooses the quote from the ranked, verified catalog before the model sees it. The model never chooses quote text or writes a quotation.
+- If the model assigns a quote to the wrong thinker, the validator rejects the pair.
+- If a pair fails validation after one repair, the app uses a deterministic library lens and green line rather than breaking.
+- If the model selects a thinker without a verified quotation, the ranker skips it. It never invents a quote.
+- The phone conversation always uses distinct thinkers and prefers at least two traditions across its three pairs.
 - Profiles without a verified quotation say so explicitly in the library. Their ideas are called “ideas,” not quotes.
 
 This is a guardrail, not a proof. The corpus is human-curated and still benefits from corrections.
@@ -149,13 +149,13 @@ LLM_MODEL=llama3.3
 LLM_BASE_URL=http://127.0.0.1:11434
 ```
 
-The recommended path is **OpenCode Go** pointed at `deepseek-v4-pro`. It uses the OpenAI-compatible endpoint at `https://opencode.ai/inference/go/openai/v1`, sends the required `x-opencode-session` header, runs the writer at `reasoning_effort: high`, and uses V4.1 Flash for analysis, critique, revision, and the green-line pass so the request stays responsive.
+The recommended path is **OpenCode Go** pointed at `deepseek-v4-pro`. It uses the OpenAI-compatible endpoint at `https://opencode.ai/inference/go/openai/v1`, sends the required `x-opencode-session` header, runs the pair writer at `reasoning_effort: high`, and uses V4.1 Flash for analysis and the green-line pass so the request stays responsive. The older three-lens writer/critic/revision path remains available for tests and future surfaces.
 
 The direct DeepSeek path behaves the same way. DeepSeek's legacy `deepseek-chat` and `deepseek-reasoner` names were retired in July 2026.
 
 The API key is server-only. The client never sees it. If the provider is missing, slow, or returns invalid JSON, the app falls back gracefully rather than breaking.
 
-Answers are cached for 30 minutes in memory by prompt context, packet, provider, model, and exclusions.
+The first phone pair takes roughly 35–60 seconds on OpenCode Go; each additional pair requested with **That’s not it** takes roughly 25–50 seconds. The older three-lens `advise()` path remains available for tests and future surfaces and is cached for 30 minutes in memory.
 
 ## Adding to the library
 
@@ -223,7 +223,10 @@ components/
   feedback.tsx             Retained for a future non-quote surface
   monogram.tsx             Legacy typographic portrait used by the retained source drawer
 lib/
-  advise.ts                History, exclusions, prompt analysis, synthesis, validation, quote guarantee
+  advise.ts                Legacy three-lens pipeline retained for tests and future surfaces
+  pair.ts                  On-demand one-quote + one-green-line phone pipeline
+  conversation.ts          Conversation types, pair views, legacy conversion
+  conversation-store.ts    Atomic local conversation and legacy share loading
   retrieve.ts              Theme extraction, lineage routing, exclusions, candidate scoring
   analysis.ts              Structured analysis of the real question
   quote-search.ts          Quote-first ranking and catalog construction
@@ -232,7 +235,7 @@ lib/
   validate.ts              Source, diversity, and name checks
   affirmations.ts          Theme-based fallback affirmations for demo/legacy answers
   portraits.ts             Loads the local portrait manifest
-  answers.ts               Local answer/feedback persistence
+  answers.ts               Legacy answer/feedback persistence
   rate-limit.ts            In-memory hourly limits
   llm/                     DeepSeek/OpenAI/Anthropic/Ollama adapters, writer, critic, affirmation
   taxonomy.ts              Genres, subgenres, top-five lists, rationales
@@ -261,14 +264,14 @@ tests/                     Corpus, engine, golden set, conversation, cost, rate-
 - The Indigenous Philosophies node names specific thinkers rather than claiming to speak for “Indigenous thought” as a whole.
 - 123 quotations is a start, not a complete quote bank. Ninety-two profiles still have no verified quotation, so the quote-first packet prefers the 95 thinkers that do.
 - The deterministic composer is deliberately plainer than live synthesis. It exists so the app never depends on a key.
-- The max-quality DeepSeek path makes several calls — analysis, writer, critic/revise, and a dedicated green-line pass — and can take roughly one to three minutes on OpenCode Go. A missing key falls back to demo mode.
+- The phone path makes two model calls per pair — one lens writer and one green-line pass — plus a prompt analysis on the first pair. A first pair takes roughly 35–60 seconds on OpenCode Go; additional pairs take roughly 25–50 seconds. A missing key falls back to library content.
 - In demo mode, the quote picked from a thinker can be less targeted than a live model’s selection; the full theory is still in the library profile.
 - Answers are stored in `~/.philos-friend` by default. For a public multi-instance deployment, swap in Postgres or Redis before scaling.
 - Rate limiting is in-memory and per process. A multi-instance deployment needs a shared Redis limiter.
 - Shared answer pages are `noindex` by default so personal questions do not get indexed.
 - The quote flow has no feedback UI; **That’s not it** is the signal. The feedback endpoint remains for a future surface.
 - Conversation history is capped at the first question plus the last two follow-ups.
-- The full structured answer is stored but hidden; the web view shows only the quote cycle and the optional reading notes reveal the tailored claim, theory, application, and affirmation.
+- The phone conversation stores the generated pairs and their source data; the share page shows those pairs read-only. The legacy full-answer format is still readable.
 - All 187 thinkers have a local portrait. Twenty come from web-search or representative historical images where Wikipedia has no free portrait; these are marked on `/credits`, and some licenses are unknown.
 - Affirmations are theme-based fallbacks in demo mode; live synthesis writes a quote-specific line.
 - There are no accounts and no payment system yet.
@@ -289,11 +292,13 @@ When the web MVP is proven, the Discord bot is a second renderer around `advise(
 
 > **Why do I need to win to have fun?**
 >
+> **Bernard Suits** once said<br>
 > “Playing a game is the voluntary attempt to overcome unnecessary obstacles.”
-> — Bernard Suits, *The Grasshopper*, ch. 3
 >
-> **That’s not it →**          **Copy link**
+> The unnecessary obstacle is the whole point — the score tells you how the game is going, not how you are.
+>
+> **That’s not it.**          **Let me ask you something else.**
 
-The three quotes are Bernard Suits on play, Simone de Beauvoir on recognition, and Epicurus on desire. After the third rejection, the card asks what the quotes missed. A new detail is read together with the original question, and the next three philosophers are selected from that amalgam while excluding the first three.
+The first pair is Bernard Suits on play. Tapping **That’s not it.** asks the server for the next unused thinker and generates one new quote and green line. After three pairs, only **Let me ask you something else.** remains; a new question is read together with the earlier ones, and the previous thinkers are excluded.
 
-That set is a curated demo fixture, validated against the same packet and source rules as a live answer.
+The demo path uses the same ranked quote selection with a deterministic lens and fallback green line.

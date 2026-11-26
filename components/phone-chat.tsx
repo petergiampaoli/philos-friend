@@ -2,16 +2,15 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import type { AdviseResponse, Lens, PacketThinker, Quote } from "@/lib/schema";
+import type { ConversationPairView, PairResponse } from "@/lib/conversation";
+import type { Lens, PacketThinker, Quote } from "@/lib/schema";
 import { Portrait } from "./portrait";
 import { ReadingNotes } from "./reading-notes";
 
 type QuoteMessage = {
   id: string;
   kind: "quote";
-  lens: Lens;
-  thinker: PacketThinker;
-  quote: Quote;
+  pair: ConversationPairView;
   shareUrl?: string;
 };
 
@@ -37,74 +36,106 @@ type NotesState = {
   shareUrl?: string;
 };
 
+type SessionState = {
+  id: string;
+  pairs: number;
+  remaining: number;
+  shareUrl?: string;
+  thinkerIds: string[];
+};
+
 const GREETING = "What's up?";
 const REJECT_LABEL = "That's not it.";
 const ASK_ELSE_LABEL = "Let me ask you something else.";
+const MAX_PAIRS = 3;
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function quotePair(
-  response: AdviseResponse,
-  index: number,
-  shareUrl?: string,
-): { quote: QuoteMessage; green: GreenMessage } | null {
-  const lens = response.answer.lenses[index];
-  if (!lens) return null;
-  const thinker = response.packet.find((item) => item.id === lens.thinkerId);
-  const quote = thinker?.quotes.find((item) => item.id === lens.quoteId) ?? thinker?.quotes[0];
-  if (!thinker || !quote) return null;
-
+function pairMessages(
+  pair: ConversationPairView,
+  shareUrl: string | undefined,
+  prefix: string,
+): { quote: QuoteMessage; green: GreenMessage } {
   return {
     quote: {
-      id: `${response.id}-quote-${index}`,
+      id: `${prefix}-quote`,
       kind: "quote",
-      lens,
-      thinker,
-      quote,
-      shareUrl: shareUrl ?? response.shareUrl,
+      pair,
+      shareUrl,
     },
     green: {
-      id: `${response.id}-green-${index}`,
+      id: `${prefix}-green`,
       kind: "green",
-      text: lens.affirmation,
+      text: pair.lens.affirmation,
     },
   };
 }
 
-function initialShareMessages(response: AdviseResponse, shareUrl?: string): Message[] {
+function initialShareMessages(
+  question: string | undefined,
+  pairs: ConversationPairView[] | undefined,
+  shareUrl: string | undefined,
+): Message[] {
   const messages: Message[] = [
     { id: "shared-greeting", kind: "text", role: "simone", text: GREETING },
-    { id: "shared-question", kind: "text", role: "user", text: response.question },
   ];
 
-  response.answer.lenses.forEach((_, index) => {
-    const pair = quotePair(response, index, shareUrl);
-    if (pair) messages.push(pair.quote, pair.green);
+  if (question) {
+    messages.push({ id: "shared-question", kind: "text", role: "user", text: question });
+  }
+
+  (pairs ?? []).forEach((pair, index) => {
+    const { quote, green } = pairMessages(pair, shareUrl, `shared-${index}`);
+    messages.push(quote, green);
   });
 
   return messages;
 }
 
+function errorMessage(payload: unknown): string {
+  if (
+    payload &&
+    typeof payload === "object" &&
+    "error" in payload &&
+    typeof payload.error === "string" &&
+    payload.error
+  ) {
+    return payload.error;
+  }
+  return "Something went wrong. Try again.";
+}
+
 export function PhoneChat({
   initialPrompt = "",
-  initialResponse,
+  initialQuestion,
+  initialPairs,
   shareUrl,
   readOnly = false,
 }: {
   initialPrompt?: string;
-  initialResponse?: AdviseResponse;
+  initialQuestion?: string;
+  initialPairs?: ConversationPairView[];
   shareUrl?: string;
   readOnly?: boolean;
 }) {
   const [messages, setMessages] = useState<Message[]>(() =>
-    initialResponse
-      ? initialShareMessages(initialResponse, shareUrl)
+    initialPairs?.length
+      ? initialShareMessages(initialQuestion, initialPairs, shareUrl)
       : [{ id: "greeting", kind: "text", role: "simone", text: GREETING }],
   );
-  const [answer, setAnswer] = useState<AdviseResponse | null>(initialResponse ?? null);
-  const [activeLens, setActiveLens] = useState(0);
+  const [session, setSession] = useState<SessionState | null>(() =>
+    initialPairs?.length
+      ? {
+          id: "",
+          pairs: initialPairs.length,
+          remaining: Math.max(0, MAX_PAIRS - initialPairs.length),
+          shareUrl,
+          thinkerIds: initialPairs.map((pair) => pair.thinker.id),
+        }
+      : null,
+  );
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
   const [typing, setTyping] = useState(false);
@@ -148,40 +179,32 @@ export function PhoneChat({
     return () => window.cancelAnimationFrame(frame);
   }, [messages.length, typing]);
 
-  async function revealAnswer(response: AdviseResponse, index: number) {
-    const pair = quotePair(response, index, shareUrl);
-    if (!pair) {
-      setPending(false);
-      setTyping(false);
-      return;
-    }
-
-    pair.quote.id = makeId("quote");
-    pair.green.id = makeId("green");
-
-    setTyping(true);
-    await delay(700);
-
-    setMessages((current) => [...current, pair.quote]);
-    setTyping(true);
-    await delay(900);
-
-    setMessages((current) => [...current, pair.green]);
-    setTyping(false);
-    setPending(false);
-    setSuggestionsVisible(true);
-  }
-
   function blurInput() {
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
   }
 
+  async function revealPair(pair: ConversationPairView, nextShareUrl: string | undefined) {
+    const { quote, green } = pairMessages(pair, nextShareUrl, makeId("pair"));
+    setTyping(true);
+    await delay(700);
+
+    append(quote);
+    setTyping(true);
+    await delay(900);
+
+    append(green);
+    setTyping(false);
+    setPending(false);
+    setSuggestionsVisible(true);
+  }
+
   async function ask(raw: string) {
     const question = raw.trim();
     if (!question || pending || readOnly) return;
 
+    const previousSession = session;
     blurInput();
     stickToBottom.current = true;
     setInput("");
@@ -191,7 +214,7 @@ export function PhoneChat({
     setTyping(true);
 
     const history = questions.slice(-4);
-    const excludeThinkerIds = answer?.trace.chosenIds ?? [];
+    const excludeThinkerIds = previousSession?.thinkerIds ?? [];
     setQuestions((current) => [...current, question]);
 
     try {
@@ -200,44 +223,75 @@ export function PhoneChat({
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ prompt: question, history, excludeThinkerIds }),
       });
-      const payload = (await response.json()) as AdviseResponse | { error?: string };
+      const payload: unknown = await response.json();
 
-      if (!response.ok) {
-        throw new Error(
-          payload && typeof payload === "object" && "error" in payload && payload.error
-            ? payload.error
-            : "Something went wrong. Try again.",
-        );
-      }
+      if (!response.ok) throw new Error(errorMessage(payload));
 
-      const result = payload as AdviseResponse;
-      setAnswer(result);
-      setActiveLens(0);
-      await revealAnswer(result, 0);
+      const result = payload as PairResponse;
+      setSession({
+        id: result.conversationId,
+        pairs: result.pairIndex + 1,
+        remaining: result.remaining,
+        shareUrl: result.shareUrl,
+        thinkerIds: [result.pair.thinker.id],
+      });
+      await revealPair(result.pair, result.shareUrl);
     } catch (caught) {
       setTyping(false);
       setPending(false);
-      const message =
-        caught instanceof Error ? caught.message : "Something went wrong. Try again.";
-      appendText("simone", message);
+      appendText(
+        "simone",
+        caught instanceof Error ? caught.message : "Something went wrong. Try again.",
+      );
     }
   }
 
   async function reject() {
-    if (!answer || pending || activeLens >= answer.answer.lenses.length - 1) return;
+    const current = session;
+    if (!current || current.pairs >= MAX_PAIRS || pending || readOnly) return;
 
-    const next = activeLens + 1;
+    blurInput();
     stickToBottom.current = true;
     appendText("user", REJECT_LABEL);
-    setActiveLens(next);
     setPending(true);
     setSuggestionsVisible(false);
     setTyping(true);
-    await revealAnswer(answer, next);
+
+    try {
+      const response = await fetch("/api/advise", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          conversationId: current.id,
+          pairIndex: current.pairs,
+        }),
+      });
+      const payload: unknown = await response.json();
+
+      if (!response.ok) throw new Error(errorMessage(payload));
+
+      const result = payload as PairResponse;
+      setSession({
+        id: result.conversationId,
+        pairs: result.pairIndex + 1,
+        remaining: result.remaining,
+        shareUrl: result.shareUrl ?? current.shareUrl,
+        thinkerIds: [...current.thinkerIds, result.pair.thinker.id],
+      });
+      await revealPair(result.pair, result.shareUrl ?? current.shareUrl);
+    } catch (caught) {
+      setTyping(false);
+      setPending(false);
+      appendText(
+        "simone",
+        caught instanceof Error ? caught.message : "Something went wrong. Try again.",
+      );
+      setSuggestionsVisible(true);
+    }
   }
 
   async function askElse() {
-    if (!answer || pending) return;
+    if (!session || pending || readOnly) return;
 
     stickToBottom.current = true;
     appendText("user", ASK_ELSE_LABEL);
@@ -284,10 +338,10 @@ export function PhoneChat({
 
   const canReject =
     !readOnly &&
-    Boolean(answer) &&
+    Boolean(session) &&
     !pending &&
-    activeLens < (answer?.answer.lenses.length ?? 0) - 1;
-  const canAskElse = !readOnly && Boolean(answer) && !pending && suggestionsVisible;
+    (session?.remaining ?? 0) > 0;
+  const canAskElse = !readOnly && Boolean(session) && !pending && suggestionsVisible;
   const showSuggestions = !readOnly && suggestionsVisible && (canReject || canAskElse);
 
   return (
@@ -311,7 +365,7 @@ export function PhoneChat({
         </div>
 
         <header className="phone-header">
-          <Portrait name="Simone" id="beauvoir" size="sm" />
+          <Portrait name="Simone" id="simone" size="sm" src="/simone-avatar.svg" />
           <div className="phone-contact">
             <p className="phone-title">Simone</p>
             <p className="phone-subtitle">
@@ -353,24 +407,30 @@ export function PhoneChat({
             return (
               <div className="msg-row is-simone" key={message.id}>
                 <div className="msg-bubble quote-bubble">
-                  <p className="quote-preface">
-                    <button
-                      className="contact-name"
-                      type="button"
-                      onClick={() =>
-                        setNotes({
-                          lens: message.lens,
-                          thinker: message.thinker,
-                          quote: message.quote,
-                          shareUrl: message.shareUrl,
-                        })
-                      }
-                    >
-                      {message.thinker.name}
-                    </button>{" "}
-                    once said
-                  </p>
-                  <p className="quote-text">“{message.quote.text}”</p>
+                  <div className="quote-preface">
+                    <Portrait
+                      name={message.pair.thinker.name}
+                      id={message.pair.thinker.id}
+                      size="xs"
+                    />
+                    <p className="quote-name-line">
+                      <button
+                        className="contact-name"
+                        type="button"
+                        onClick={() =>
+                          setNotes({
+                            lens: message.pair.lens,
+                            thinker: message.pair.thinker,
+                            quote: message.pair.quote,
+                            shareUrl: message.shareUrl,
+                          })
+                        }
+                      >
+                        {message.pair.thinker.name}
+                      </button>{" "}once said
+                    </p>
+                  </div>
+                  <p className="quote-text">“{message.pair.quote.text}”</p>
                 </div>
               </div>
             );

@@ -39,7 +39,7 @@ const affirmationSchema = z.object({
     .max(3),
 });
 
-const AFFIRMATION_SYSTEM_PROMPT = `You write the green line for Philos-Friend: the life-affirming sentence that appears above the quote.
+export const AFFIRMATION_SYSTEM_PROMPT = `You write the green line for Philos-Friend: the life-affirming sentence that appears with the quote.
 
 This line is not a summary and not therapy. It is a short, non-judgmental, genuinely useful sentence that helps the person carry the quote into their situation.
 
